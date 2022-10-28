@@ -15,7 +15,7 @@ import java.awt.*;
 import java.util.HashSet;
 
 @ModuleInfo(name = "Hole ESP", category = Module.Category.Visual, description = "Draws safe spots.")
-public class HoleESP extends Module {
+public class AF_HoleESP extends Module {
 
     HashSet<BlockPos> obsidianHoles = new HashSet<>();
     HashSet<BlockPos> bedrockHoles = new HashSet<>();

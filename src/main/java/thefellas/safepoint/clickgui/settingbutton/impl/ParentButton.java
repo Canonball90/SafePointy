@@ -2,7 +2,7 @@ package thefellas.safepoint.clickgui.settingbutton.impl;
 
 import thefellas.safepoint.Safepoint;
 import thefellas.safepoint.clickgui.settingbutton.Button;
-import thefellas.safepoint.modules.core.ClickGui;
+import thefellas.safepoint.modules.core.AC_ClickGui;
 import thefellas.safepoint.settings.Setting;
 import thefellas.safepoint.settings.impl.ParentSetting;
 import thefellas.safepoint.utils.RenderUtil;
@@ -23,8 +23,8 @@ public class ParentButton extends Button {
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-        RenderUtil.drawRect(x - 2, y, x + width + 2, y + height, ClickGui.getInstance().backgroundColor.getColor().getRGB());
-        RenderUtil.drawRect(x, y, x + width, y + height, ClickGui.getInstance().color.getColor().getRGB());
+        RenderUtil.drawRect(x - 2, y, x + width + 2, y + height, AC_ClickGui.getInstance().backgroundColor.getColor().getRGB());
+        RenderUtil.drawRect(x, y, x + width, y + height, AC_ClickGui.getInstance().color.getColor().getRGB());
         if (isInside(mouseX, mouseY))
             RenderUtil.drawRect(x, y, x + width, y + height, new Color(0, 0, 0, 100).getRGB());
         Safepoint.mc.fontRenderer.drawStringWithShadow(parentSetting.isOpen ? "-" : "+", x + width - Safepoint.mc.fontRenderer.getStringWidth(parentSetting.isOpen ? "-" : "+") - 2, y + (height / 2f) - (Safepoint.mc.fontRenderer.FONT_HEIGHT / 2f), -1);

@@ -7,7 +7,7 @@ import thefellas.safepoint.modules.ModuleInfo;
 import thefellas.safepoint.settings.impl.FloatSetting;
 
 @ModuleInfo(name = "BigPOV", description = "Changes your height", category = Module.Category.Player)
-public class BigPOV extends Module {
+public class AC_BigPOV extends Module {
     FloatSetting height = new FloatSetting("Speed", 5, 2, 15, this);
 
     @Override

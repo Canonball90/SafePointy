@@ -1,7 +1,7 @@
 package thefellas.safepoint.hud;
 
 import thefellas.safepoint.Safepoint;
-import thefellas.safepoint.modules.core.ClickGui;
+import thefellas.safepoint.modules.core.AC_ClickGui;
 import thefellas.safepoint.utils.RenderUtil;
 
 public class HudModule {
@@ -20,7 +20,7 @@ public class HudModule {
     }
 
     public void drawScreen() {
-        RenderUtil.drawRect(x, y, x + w, y + h,value ? ClickGui.getInstance().color.getColor().getRGB() : ClickGui.getInstance().backgroundColor.getColor().getRGB());
+        RenderUtil.drawRect(x, y, x + w, y + h,value ? AC_ClickGui.getInstance().color.getColor().getRGB() : AC_ClickGui.getInstance().backgroundColor.getColor().getRGB());
         Safepoint.mc.fontRenderer.drawStringWithShadow(name, x, y, -1);
     }
 

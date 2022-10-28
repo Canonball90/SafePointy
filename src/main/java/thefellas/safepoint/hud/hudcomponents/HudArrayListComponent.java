@@ -4,7 +4,7 @@ import net.minecraft.client.Minecraft;
 import thefellas.safepoint.Safepoint;
 import thefellas.safepoint.hud.HudModule;
 import thefellas.safepoint.modules.Module;
-import thefellas.safepoint.modules.core.ClickGui;
+import thefellas.safepoint.modules.core.AC_ClickGui;
 import thefellas.safepoint.utils.RenderUtil;
 
 import java.awt.*;
@@ -32,7 +32,7 @@ public class HudArrayListComponent extends HudModule {
         dragScreen(mouseX, mouseY);
         if (getValue()) {
             if (isInsideDragField(mouseX, mouseY)) {
-                RenderUtil.drawRect(renderX, renderY, renderX + Safepoint.mc.fontRenderer.getStringWidth("SafePoint.club"), renderY + Safepoint.mc.fontRenderer.FONT_HEIGHT, new Color(0, 0, 0, 100).getRGB());
+                RenderUtil.drawRect(renderX, renderY+2, renderX + Safepoint.mc.fontRenderer.getStringWidth("Chat Notifications"), renderY + Safepoint.mc.fontRenderer.FONT_HEIGHT*Safepoint.moduleInitializer.getModuleList().size(), new Color(0, 0, 0, 100).getRGB());
                 RenderUtil.drawRect(renderX + Safepoint.mc.fontRenderer.getStringWidth("SafePoint.club") + 3, renderY - 7, renderX + Safepoint.mc.fontRenderer.getStringWidth("SafePoint.club") + 3 + Safepoint.mc.fontRenderer.getStringWidth("renderX: " + renderX + " renderY: " + renderY), renderY - 7 + Safepoint.mc.fontRenderer.FONT_HEIGHT, new Color(0, 0, 0, 100).getRGB());
                 Safepoint.mc.fontRenderer.drawStringWithShadow("renderX: " + renderX + " renderY: " + renderY, renderX + Safepoint.mc.fontRenderer.getStringWidth("SafePoint.club") + 3, renderY - 7, -1);
             }
@@ -46,14 +46,13 @@ public class HudArrayListComponent extends HudModule {
         int yOffset = 3;
         for(Module module : Safepoint.moduleInitializer.getModuleList()) {
             if(module.isEnabled()) {
-                Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(module.getName(), renderX, renderY + yOffset, ClickGui.getInstance().color.getColor().getRGB());
+                Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(module.getName(), renderX, renderY + yOffset, AC_ClickGui.getInstance().color.getColor().getRGB());
                 yOffset += Minecraft.getMinecraft().fontRenderer.FONT_HEIGHT;
             }
         }
     }
-
     public boolean isInsideDragField(int mouseX, int mouseY) {
-        return (mouseX > renderX && mouseX < renderX + Safepoint.mc.fontRenderer.getStringWidth("SafePoint.club")) && (mouseY > renderY && mouseY < renderY + Safepoint.mc.fontRenderer.FONT_HEIGHT);
+        return (mouseX > renderX && mouseX < renderX + Safepoint.mc.fontRenderer.getStringWidth("Chat Notifications")) && (mouseY > renderY && mouseY < renderY + Safepoint.mc.fontRenderer.FONT_HEIGHT*Safepoint.moduleInitializer.getModuleList().size());
     }
 
     @Override

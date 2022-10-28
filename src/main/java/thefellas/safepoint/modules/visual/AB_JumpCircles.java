@@ -1,6 +1,5 @@
 package thefellas.safepoint.modules.visual;
 
-import javafx.scene.shape.Circle;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
@@ -16,7 +15,7 @@ import java.util.Collections;
 import java.util.List;
 
 @ModuleInfo(name = "JumpCircles", description = "Jump effects", category = Module.Category.Visual)
-public class JumpCircles extends Module {
+public class AB_JumpCircles extends Module {
     static List<Circle> circles = new ArrayList();
     static final byte MAX_JC_TIME = 20;
     public EnumSetting mode = new EnumSetting("Mode", "Default", Arrays.asList("Default", "Disc"), this);
@@ -48,7 +47,7 @@ public class JumpCircles extends Module {
             GL11.glShadeModel(GL11.GL_SMOOTH);
             Collections.reverse(circles);
             try {
-                for (Circle c : JumpCircles.circles) {
+                for (Circle c : AB_JumpCircles.circles) {
                     float k = (float) c.existed / MAX_JC_TIME;
                     double x = c.position().x;
                     double y = c.position().y - k * 0.5;
@@ -84,7 +83,7 @@ public class JumpCircles extends Module {
             GL11.glShadeModel(GL11.GL_SMOOTH);
             Collections.reverse(circles);
             try {
-                for (Circle c : JumpCircles.circles) {
+                for (Circle c : AB_JumpCircles.circles) {
                     double x = c.position().x;
                     double y = c.position().y;
                     double z = c.position().z;

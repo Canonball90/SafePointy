@@ -27,7 +27,7 @@ import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL11.GL_LINE_SMOOTH;
 
 @ModuleInfo(name = "Trajectories", description = "", category = Module.Category.Visual)
-public class Trajectories extends Module {
+public class AA_Trajectories extends Module {
     private Queue<Vec3d> flightPoint = new ConcurrentLinkedQueue<>();
 
     @SubscribeEvent

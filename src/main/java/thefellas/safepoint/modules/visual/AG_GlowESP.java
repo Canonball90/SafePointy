@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @ModuleInfo(name = "GlowESP", description = "GlowESP hack", category = Module.Category.Visual)
-public class GlowESP extends Module {
+public class AG_GlowESP extends Module {
     private static List<Entity> glowed = new ArrayList<>();
     @Override
     public void onWorldRender() {

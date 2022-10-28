@@ -4,7 +4,7 @@ import thefellas.safepoint.Safepoint;
 import thefellas.safepoint.clickgui.settingbutton.Button;
 import thefellas.safepoint.clickgui.settingbutton.impl.*;
 import thefellas.safepoint.modules.Module;
-import thefellas.safepoint.modules.core.ClickGui;
+import thefellas.safepoint.modules.core.AC_ClickGui;
 import thefellas.safepoint.settings.Setting;
 import thefellas.safepoint.settings.impl.*;
 import thefellas.safepoint.utils.RenderUtil;
@@ -63,7 +63,7 @@ public class ModuleWindow {
     }
 
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-        RenderUtil.drawRect(x, y, x + width, y + height, ClickGui.getInstance().backgroundColor.getColor().getRGB());
+        RenderUtil.drawRect(x, y, x + width, y + height, AC_ClickGui.getInstance().backgroundColor.getColor().getRGB());
         if (module.isEnabled())
             RenderUtil.drawRect(x + 1, y, x + width - 1, y + height, enabledColor.getRGB());
         if (isInside(mouseX, mouseY)) {
@@ -90,7 +90,7 @@ public class ModuleWindow {
                             y += ((EnumButton) button).enumSetting.getModes().size() * 10;
                 }
             }
-            RenderUtil.drawOutlineRect(x + 2, this.y + height, x + width - 2, y + height - 1, ClickGui.getInstance().color.getColor(), 1f);
+            RenderUtil.drawOutlineRect(x + 2, this.y + height, x + width - 2, y + height - 1, AC_ClickGui.getInstance().color.getColor(), 1f);
         }
     }
 

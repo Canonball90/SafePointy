@@ -33,7 +33,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 @ModuleInfo(name = "AutoCrystal", description = "Automatically places and breaks crystals", category = Module.Category.Combat)
-public class AutoCrystal extends Module {
+public class AA_AutoCrystal extends Module {
     public BooleanSetting packetBreak = new BooleanSetting("Packet Break", false, this);
 
     public IntegerSetting delay = new IntegerSetting("Delay", 25, 0, 250, this);

@@ -9,7 +9,7 @@ import thefellas.safepoint.settings.impl.StringSetting;
 import java.util.UUID;
 
 @ModuleInfo(name = "Fake Player", category = Module.Category.Misc, description = "Spawns fake entity")
-public class FakePlayer extends Module {
+public class AB_FakePlayer extends Module {
     EntityOtherPlayerMP fake_player;
 
     StringSetting name = new StringSetting("Name", "Notch", this);

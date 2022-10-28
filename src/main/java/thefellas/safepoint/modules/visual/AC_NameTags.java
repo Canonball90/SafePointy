@@ -12,7 +12,7 @@ import thefellas.safepoint.modules.Module;
 import thefellas.safepoint.modules.ModuleInfo;
 
 @ModuleInfo(name = "NameTags", description = "Renders nametags above players", category = Module.Category.Visual)
-public class NameTags extends Module {
+public class AC_NameTags extends Module {
 
     @SubscribeEvent
     public void onRender(RenderLivingEvent.Specials.Pre e) {

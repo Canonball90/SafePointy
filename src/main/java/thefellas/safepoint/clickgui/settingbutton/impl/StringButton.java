@@ -3,7 +3,7 @@ package thefellas.safepoint.clickgui.settingbutton.impl;
 import com.mojang.realmsclient.gui.ChatFormatting;
 import thefellas.safepoint.Safepoint;
 import thefellas.safepoint.clickgui.settingbutton.Button;
-import thefellas.safepoint.modules.core.ClickGui;
+import thefellas.safepoint.modules.core.AC_ClickGui;
 import thefellas.safepoint.settings.Setting;
 import thefellas.safepoint.settings.impl.StringSetting;
 import thefellas.safepoint.utils.RenderUtil;
@@ -25,7 +25,7 @@ public class StringButton extends Button {
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-        RenderUtil.drawRect(x - 2, y, x + width + 2, y + height, ClickGui.getInstance().backgroundColor.getColor().getRGB());
+        RenderUtil.drawRect(x - 2, y, x + width + 2, y + height, AC_ClickGui.getInstance().backgroundColor.getColor().getRGB());
         if (isInside(mouseX, mouseY))
             RenderUtil.drawRect(x, y, x + width, y + height, new Color(0, 0, 0, 100).getRGB());
         Safepoint.mc.fontRenderer.drawStringWithShadow(stringSetting.isOpen() ? stringSetting.getName() + " " + ChatFormatting.GRAY + stringSetting.getValue() + "..." : stringSetting.getName() + " " + ChatFormatting.GRAY + stringSetting.getValue(), x + 2, y, -1);

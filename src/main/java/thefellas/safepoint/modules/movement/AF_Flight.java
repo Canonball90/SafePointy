@@ -8,7 +8,7 @@ import thefellas.safepoint.settings.impl.FloatSetting;
 import java.util.Arrays;
 
 @ModuleInfo(name = "Flight", category = Module.Category.Movement, description = "Fly like a bird")
-public class Flight extends Module {
+public class AF_Flight extends Module {
     public EnumSetting mode = new EnumSetting("Mode", "Static", Arrays.asList("Static", "Creative"), this);
     FloatSetting speed = new FloatSetting("Speed", 1, 1, 5, this);
 

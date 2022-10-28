@@ -2,7 +2,7 @@ package thefellas.safepoint.hud.hudcomponents;
 
 import thefellas.safepoint.Safepoint;
 import thefellas.safepoint.hud.HudModule;
-import thefellas.safepoint.modules.core.ClickGui;
+import thefellas.safepoint.modules.core.AC_ClickGui;
 import thefellas.safepoint.utils.RenderUtil;
 
 import java.awt.*;
@@ -39,7 +39,7 @@ public class HudWatermarkComponent extends HudModule {
     }
 
     public void drawText() {
-        Safepoint.mc.fontRenderer.drawStringWithShadow("SafePoint.club", renderX, renderY, ClickGui.getInstance().color.getColor().getRGB());
+        Safepoint.mc.fontRenderer.drawStringWithShadow("SafePoint.club", renderX, renderY, AC_ClickGui.getInstance().color.getColor().getRGB());
     }
 
     public boolean isInsideDragField(int mouseX, int mouseY) {

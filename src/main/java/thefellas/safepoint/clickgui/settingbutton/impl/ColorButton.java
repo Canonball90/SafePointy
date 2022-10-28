@@ -3,7 +3,7 @@ package thefellas.safepoint.clickgui.settingbutton.impl;
 import com.mojang.realmsclient.gui.ChatFormatting;
 import thefellas.safepoint.Safepoint;
 import thefellas.safepoint.clickgui.settingbutton.Button;
-import thefellas.safepoint.modules.core.ClickGui;
+import thefellas.safepoint.modules.core.AC_ClickGui;
 import thefellas.safepoint.settings.Setting;
 import thefellas.safepoint.settings.impl.ColorSetting;
 import thefellas.safepoint.utils.RenderUtil;
@@ -56,14 +56,14 @@ public class ColorButton extends Button {
             if (colorSetting.isSelected())
                 setHeight(height + 10);
         }
-        RenderUtil.drawRect(x - 2, y, x + width + 2, y + height, ClickGui.getInstance().backgroundColor.getColor().getRGB());
+        RenderUtil.drawRect(x - 2, y, x + width + 2, y + height, AC_ClickGui.getInstance().backgroundColor.getColor().getRGB());
         if (isInsideButtonOnly(mouseX, mouseY))
             RenderUtil.drawRect(x, y, x + width, y + 10, new Color(0, 0, 0, 100).getRGB());
         Safepoint.mc.fontRenderer.drawStringWithShadow(colorSetting.getName(), x + 2, y, -1);
         String hex = String.format("#%06x", colorSetting.getColor().getRGB() & 0xFFFFFF);
         if (colorSetting.isOpen()) {
             drawPicker(colorSetting, x + 1, y + 12, x + 111, y + 12, x + 1, y + 94, mouseX, mouseY);
-            RenderUtil.drawRect(x + 1, y + 107, x + 109, y + (colorSetting.isSelected() ? 130 : 120), ClickGui.getInstance().backgroundColor.getColor().getRGB());
+            RenderUtil.drawRect(x + 1, y + 107, x + 109, y + (colorSetting.isSelected() ? 130 : 120), AC_ClickGui.getInstance().backgroundColor.getColor().getRGB());
             Safepoint.mc.fontRenderer.drawStringWithShadow(colorSetting.isSelected() ? ChatFormatting.UNDERLINE + hex : hex, x + 109 / 2f - (Safepoint.mc.fontRenderer.getStringWidth(hex) / 2f), y + 109 + (11 / 2f) - (Safepoint.mc.fontRenderer.FONT_HEIGHT / 2f), -1);
             if (colorSetting.isSelected()) {
                 Safepoint.mc.fontRenderer.drawStringWithShadow(isInsideCopy(mouseX, mouseY) ? ChatFormatting.UNDERLINE + "Copy" : "Copy", (x + ((107) / 8f) * 2) - (Safepoint.mc.fontRenderer.getStringWidth("Copy") / 2f), y + 120, -1);
@@ -87,7 +87,7 @@ public class ColorButton extends Button {
                 if (Objects.requireNonNull(readClipboard()).startsWith("#")) {
                     colorSetting.setColor(Color.decode(Objects.requireNonNull(readClipboard())));
                 } else {
-                    Safepoint.mc.player.sendMessage(new TextComponentString("The color your pasting is not a hex-type color."));
+                    Safepoint.mc.player.sendMessage(new TextComponentString("The color your pasting is not a hex code."));
                 }
             }
         }

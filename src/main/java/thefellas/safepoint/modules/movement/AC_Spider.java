@@ -4,7 +4,7 @@ import thefellas.safepoint.modules.Module;
 import thefellas.safepoint.modules.ModuleInfo;
 
 @ModuleInfo(name = "Spider", category = Module.Category.Movement, description = "Climbs up walls")
-public class Spider extends Module {
+public class AC_Spider extends Module {
     @Override
     public void onTick() {
         if(nullCheck()) return;

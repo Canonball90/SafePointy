@@ -7,7 +7,7 @@ import thefellas.safepoint.modules.Module;
 import thefellas.safepoint.modules.ModuleInfo;
 
 @ModuleInfo(name = "NoFall", description = "Negates fall damage",category = Module.Category.Movement)
-public class NoFall extends Module {
+public class AE_NoFall extends Module {
 
     @SubscribeEvent
     public void OnUpdate(TickEvent.PlayerTickEvent e) {

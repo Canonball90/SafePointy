@@ -17,7 +17,7 @@ import org.lwjgl.input.Mouse;
 import java.util.Arrays;
 
 @ModuleInfo(name = "PacketEXP", category = Module.Category.Player, description = "Throws Exp using packets")
-public class PacketEXP extends Module {
+public class AA_PacketEXP extends Module {
 
     public EnumSetting triggerMode = new EnumSetting("TriggerMode", "RightClick", Arrays.asList("RightClick", "MiddleClick", "Custom"), this);
     public KeySetting customKey = new KeySetting("CustomKey", Keyboard.KEY_NONE, this, v -> triggerMode.getValue().equals("Custom"));

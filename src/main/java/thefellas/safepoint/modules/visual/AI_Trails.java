@@ -3,7 +3,6 @@ package thefellas.safepoint.modules.visual;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 import thefellas.safepoint.modules.Module;
 import thefellas.safepoint.modules.ModuleInfo;
@@ -16,7 +15,7 @@ import java.util.ArrayList;
 import static org.lwjgl.opengl.GL11.*;
 
 @ModuleInfo(name = "Trails", description = "Draws a trail behind you", category = Module.Category.Visual)
-public class Trails extends Module {
+public class AI_Trails extends Module {
     ArrayList<Point> points = new ArrayList<>();
 
     ColorSetting color = new ColorSetting("Color", new Color(0, 255, 110, 169), this);

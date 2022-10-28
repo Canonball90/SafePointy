@@ -8,7 +8,7 @@ import thefellas.safepoint.modules.ModuleInfo;
 import thefellas.safepoint.utils.RenderUtil;
 
 @ModuleInfo(name = "ESP", description = "ESP hack", category = Module.Category.Visual)
-public class ESP extends Module {
+public class AJ_ESP extends Module {
     AxisAlignedBB box = null;
     @Override
     public void onWorldRender() {

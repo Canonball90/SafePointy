@@ -4,11 +4,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.AxisAlignedBB;
 import thefellas.safepoint.modules.Module;
 import thefellas.safepoint.modules.ModuleInfo;
-import thefellas.safepoint.settings.impl.DoubleSetting;
 import thefellas.safepoint.settings.impl.FloatSetting;
 
 @ModuleInfo(name = "Hitbox", description = "Bigger hitbox", category = Module.Category.Combat)
-public class Hitbox extends Module {
+public class AD_Hitbox extends Module {
     FloatSetting size = new FloatSetting("Size", 1f, 0.1f, 4f, this);
     @Override
     public void onTick() {

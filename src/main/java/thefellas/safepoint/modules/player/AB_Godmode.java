@@ -5,7 +5,7 @@ import thefellas.safepoint.modules.Module;
 import thefellas.safepoint.modules.ModuleInfo;
 
 @ModuleInfo(name = "Godmode", description = "Godmode", category = Module.Category.Player)
-public class Godmode extends Module {
+public class AB_Godmode extends Module {
     @Override
     public void onTick(){
         if(nullCheck()) return;

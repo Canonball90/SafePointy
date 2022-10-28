@@ -2,22 +2,21 @@ package thefellas.safepoint.modules.visual;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.util.math.AxisAlignedBB;
 import thefellas.safepoint.modules.Module;
 import thefellas.safepoint.modules.ModuleInfo;
 import thefellas.safepoint.utils.RenderUtil;
 
-@ModuleInfo(name = "ItemESP", description = "Item ESP hack", category = Module.Category.Visual)
-public class ItemESP extends Module {
-    AxisAlignedBB box;
+@ModuleInfo(name = "EntityESP", description = "ESP hack for entities", category = Module.Category.Visual)
+public class AE_EntityESP extends Module {
+    AxisAlignedBB box = null;
 
     @Override
     public void onWorldRender() {
         if(nullCheck()) return;
         if (!this.isEnabled()) return;
         for (Entity entity : mc.world.loadedEntityList) {
-            if (entity instanceof EntityItem) {
+            if (entity != mc.player && entity != null) {
                 box = new AxisAlignedBB(
                         entity.getEntityBoundingBox().minX
                                 - 0.05

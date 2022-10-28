@@ -10,7 +10,7 @@ import thefellas.safepoint.settings.impl.StringSetting;
 import java.util.Arrays;
 
 @ModuleInfo(name = "ChatSuffix", description = "Adds a suffix to your chat messages", category = Module.Category.Misc)
-public class ChatSuffix extends Module {
+public class AC_ChatSuffix extends Module {
     StringSetting suffix = new StringSetting("Suffix", "safepoint", this);
 
     @SubscribeEvent

@@ -8,7 +8,7 @@ import thefellas.safepoint.settings.impl.DoubleSetting;
 import thefellas.safepoint.settings.impl.FloatSetting;
 
 @ModuleInfo(name = "ElytraFly", description = "Makes flying with an elytra easier", category = Module.Category.Movement)
-public class ElytraFly extends Module {
+public class AA_ElytraFly extends Module {
     FloatSetting speed = new FloatSetting("Speed", 1, 1, 3, this);
     DoubleSetting Upspeed = new DoubleSetting("Up-Speed", 1.0, 0.1, 3.0, this);
     DoubleSetting Downspeed = new DoubleSetting("Down-Speed", 1.0, 0.1, 3.0, this);
@@ -44,7 +44,7 @@ public class ElytraFly extends Module {
     public void onPlayerTick(TickEvent.PlayerTickEvent playerTickEvent) {
         if(nullCheck()) return;
         if (mc.player.isElytraFlying()) {
-            float yaw = (float) Math.toRadians(ElytraFly.mc.player.rotationYaw);
+            float yaw = (float) Math.toRadians(AA_ElytraFly.mc.player.rotationYaw);
             double sped = 10 / 10.0;
 
             mc.player.setVelocity(0, 0, 0);

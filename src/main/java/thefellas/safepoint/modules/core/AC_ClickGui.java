@@ -11,8 +11,8 @@ import org.lwjgl.input.Keyboard;
 import java.awt.*;
 
 @ModuleInfo(name = "Click Gui", category = Module.Category.Core, description = "Displays the clickgui.")
-public class ClickGui extends Module {
-    static ClickGui INSTANCE = new ClickGui();
+public class AC_ClickGui extends Module {
+    static AC_ClickGui INSTANCE = new AC_ClickGui();
     public ColorSetting color = new ColorSetting("Color", new Color(255, 255, 255, 255), this);
     public IntegerSetting integerSetting = new IntegerSetting("I", 100, 0, 500, this);
     public BooleanSetting background = new BooleanSetting("Background", true, this);
@@ -42,9 +42,9 @@ public class ClickGui extends Module {
             disableModule();
     }
 
-    public static ClickGui getInstance() {
+    public static AC_ClickGui getInstance() {
         if (INSTANCE == null) {
-            INSTANCE = new ClickGui();
+            INSTANCE = new AC_ClickGui();
         }
         return INSTANCE;
     }

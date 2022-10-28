@@ -2,13 +2,11 @@ package thefellas.safepoint.clickgui.windows;
 
 import thefellas.safepoint.Safepoint;
 import thefellas.safepoint.modules.Module;
-import thefellas.safepoint.modules.core.ClickGui;
+import thefellas.safepoint.modules.core.AC_ClickGui;
 import thefellas.safepoint.settings.Setting;
 import thefellas.safepoint.settings.impl.ColorSetting;
 import thefellas.safepoint.settings.impl.EnumSetting;
 import thefellas.safepoint.utils.RenderUtil;
-import net.minecraft.client.audio.PositionedSoundRecord;
-import net.minecraft.init.SoundEvents;
 
 import java.util.ArrayList;
 
@@ -47,7 +45,7 @@ public class Window {
 
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         dragScreen(mouseX, mouseY);
-        RenderUtil.drawRect(x - 1, y, x + width + 1, y + height, ClickGui.getInstance().color.getColor().getRGB());
+        RenderUtil.drawRect(x - 1, y, x + width + 1, y + height, AC_ClickGui.getInstance().color.getColor().getRGB());
         Safepoint.mc.fontRenderer.drawStringWithShadow(name, x + (width / 2f) - (Safepoint.mc.fontRenderer.getStringWidth(name) / 2f), y + (height / 2f) - (Safepoint.mc.fontRenderer.FONT_HEIGHT / 2f), -1);
         if (isOpened) {
             modules.clear();
@@ -75,12 +73,12 @@ public class Window {
                                 openedHeight += ((EnumSetting) settingsRewrite).getModes().size() * 10;
                     }
                 }
-                modules.add(new ModuleWindow(module.getName(), x, y += height, width, height, ClickGui.getInstance().backgroundColor.getColor(), ClickGui.getInstance().color.getColor(), module));
+                modules.add(new ModuleWindow(module.getName(), x, y += height, width, height, AC_ClickGui.getInstance().backgroundColor.getColor(), AC_ClickGui.getInstance().color.getColor(), module));
                 y += openedHeight;
             }
-            RenderUtil.drawOutlineRect(x, this.y + height, x + width, y + height, ClickGui.getInstance().color.getColor(), 1.5f);
+            RenderUtil.drawOutlineRect(x, this.y + height, x + width, y + height, AC_ClickGui.getInstance().color.getColor(), 1.5f);
         }
-        RenderUtil.drawOutlineRect(x, this.y, x + width, this.y + height, ClickGui.getInstance().color.getColor(), 1.5f);
+        RenderUtil.drawOutlineRect(x, this.y, x + width, this.y + height, AC_ClickGui.getInstance().color.getColor(), 1.5f);
         if (isOpened)
             modules.forEach(modules -> modules.drawScreen(mouseX, mouseY, partialTicks));
     }

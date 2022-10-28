@@ -6,7 +6,7 @@ import thefellas.safepoint.modules.Module;
 import thefellas.safepoint.modules.ModuleInfo;
 
 @ModuleInfo(name = "AutoRespawn", description = "Automatioally respawns you",category = Module.Category.Misc)
-public class AutoRespawn extends Module {
+public class AA_AutoRespawn extends Module {
 
     @SubscribeEvent
     public void onUpdate(TickEvent.PlayerTickEvent e) {

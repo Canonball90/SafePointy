@@ -1,6 +1,6 @@
 package thefellas.safepoint.hud;
 import thefellas.safepoint.Safepoint;
-import thefellas.safepoint.modules.core.ClickGui;
+import thefellas.safepoint.modules.core.AC_ClickGui;
 import thefellas.safepoint.utils.RenderUtil;
 import net.minecraft.client.gui.GuiScreen;
 
@@ -49,7 +49,7 @@ public class HudWindow extends GuiScreen {
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         dragScreen(mouseX, mouseY);
-        RenderUtil.drawRect(x, y, x + w, y + h, ClickGui.getInstance().color.getColor().getRGB());
+        RenderUtil.drawRect(x, y, x + w, y + h, AC_ClickGui.getInstance().color.getColor().getRGB());
         Safepoint.mc.fontRenderer.drawStringWithShadow("Hud Editor", x + (w / 2f) - (Safepoint.mc.fontRenderer.getStringWidth("Hud Editor") / 2f), y + (h / 2f) - (Safepoint.mc.fontRenderer.FONT_HEIGHT / 2f), -1);
         if (isInsideCloseButton(mouseX, mouseY))
             RenderUtil.drawRect(x + w - Safepoint.mc.fontRenderer.getStringWidth("x") - 4, y, x + w, y + h, new Color(0, 0, 0, 100).getRGB());

@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Objects;
 
 @ModuleInfo(name = "FullBright", description = "Easier to see now haha", category = Module.Category.Visual)
-public class FullBright extends Module {
+public class AD_FullBright extends Module {
 
     private float oldBright;
 

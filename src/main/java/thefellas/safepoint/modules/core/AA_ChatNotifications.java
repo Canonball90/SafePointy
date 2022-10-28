@@ -10,7 +10,7 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @ModuleInfo(name = "Chat Notifications", category = Module.Category.Core, description = "Send Notifications in chat when certain things happen.")
-public class ChatNotifications extends Module {
+public class AA_ChatNotifications extends Module {
     public BooleanSetting modules = new BooleanSetting("Modules", false, this);
  //   public BooleanSetting totemPops = new BooleanSetting("Totem Pops", false, this);
     public BooleanSetting deaths = new BooleanSetting("Deaths", false, this);

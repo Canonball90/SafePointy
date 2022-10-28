@@ -2,7 +2,7 @@ package thefellas.safepoint.clickgui.settingbutton.impl;
 
 import thefellas.safepoint.Safepoint;
 import thefellas.safepoint.clickgui.settingbutton.Button;
-import thefellas.safepoint.modules.core.ClickGui;
+import thefellas.safepoint.modules.core.AC_ClickGui;
 import thefellas.safepoint.settings.Setting;
 import thefellas.safepoint.utils.RenderUtil;
 import net.minecraft.client.audio.PositionedSoundRecord;
@@ -20,9 +20,9 @@ public class BooleanButton extends Button {
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-        RenderUtil.drawRect(x - 2, y, x + width + 2, y + height, ClickGui.getInstance().backgroundColor.getColor().getRGB());
+        RenderUtil.drawRect(x - 2, y, x + width + 2, y + height, AC_ClickGui.getInstance().backgroundColor.getColor().getRGB());
         if ((boolean) setting.getValue())
-            RenderUtil.drawRect(x, y, x + width, y + height, ClickGui.getInstance().color.getColor().getRGB());
+            RenderUtil.drawRect(x, y, x + width, y + height, AC_ClickGui.getInstance().color.getColor().getRGB());
 
         if (isInside(mouseX, mouseY))
             RenderUtil.drawRect(x, y, x + width, y + height, new Color(0, 0, 0, 100).getRGB());

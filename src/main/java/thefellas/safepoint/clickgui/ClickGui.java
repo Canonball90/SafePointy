@@ -4,6 +4,7 @@ import thefellas.safepoint.Safepoint;
 import thefellas.safepoint.clickgui.windows.Window;
 import thefellas.safepoint.modules.Module;
 import net.minecraft.client.gui.GuiScreen;
+import thefellas.safepoint.modules.core.AC_ClickGui;
 import thefellas.safepoint.utils.RenderUtil;
 import thefellas.safepoint.utils.particle.ParticleSystem;
 
@@ -35,9 +36,9 @@ public class ClickGui extends GuiScreen {
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-        if(thefellas.safepoint.modules.core.ClickGui.getInstance().background.getValue()) {
-            RenderUtil.drawGradient(0, 0, width, height, new Color(thefellas.safepoint.modules.core.ClickGui.getInstance().backgroundColor.getValue().getRed(),thefellas.safepoint.modules.core.ClickGui.getInstance().backgroundColor.getValue().getGreen(),thefellas.safepoint.modules.core.ClickGui.getInstance().backgroundColor.getValue().getBlue(), 130).getRGB(), new Color(thefellas.safepoint.modules.core.ClickGui.getInstance().backgroundColor2.getValue().getRed(),thefellas.safepoint.modules.core.ClickGui.getInstance().backgroundColor2.getValue().getGreen(),thefellas.safepoint.modules.core.ClickGui.getInstance().backgroundColor2.getValue().getBlue(), 130).getRGB());
-            if(thefellas.safepoint.modules.core.ClickGui.getInstance().particles.getValue()){
+        if(AC_ClickGui.getInstance().background.getValue()) {
+            RenderUtil.drawGradient(0, 0, width, height, new Color(AC_ClickGui.getInstance().backgroundColor.getValue().getRed(), AC_ClickGui.getInstance().backgroundColor.getValue().getGreen(), AC_ClickGui.getInstance().backgroundColor.getValue().getBlue(), 130).getRGB(), new Color(AC_ClickGui.getInstance().backgroundColor2.getValue().getRed(), AC_ClickGui.getInstance().backgroundColor2.getValue().getGreen(), AC_ClickGui.getInstance().backgroundColor2.getValue().getBlue(), 130).getRGB());
+            if(AC_ClickGui.getInstance().particles.getValue()){
                 this.particleSystem.tick(20);
                 this.particleSystem.render();
             }

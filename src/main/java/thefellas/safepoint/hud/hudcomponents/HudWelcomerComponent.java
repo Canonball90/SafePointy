@@ -4,7 +4,7 @@ import com.mojang.realmsclient.gui.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import thefellas.safepoint.Safepoint;
 import thefellas.safepoint.hud.HudModule;
-import thefellas.safepoint.modules.core.ClickGui;
+import thefellas.safepoint.modules.core.AC_ClickGui;
 import thefellas.safepoint.utils.RenderUtil;
 
 import java.awt.*;
@@ -41,7 +41,7 @@ public class HudWelcomerComponent extends HudModule {
     }
 
     public void drawText() {
-        Safepoint.mc.fontRenderer.drawStringWithShadow(ChatFormatting.BOLD + "Welcome to Safepoint.club, " + ChatFormatting.RESET + Minecraft.getMinecraft().player.getName().toString() + ":)", renderX, renderY, ClickGui.getInstance().color.getColor().getRGB());
+        Safepoint.mc.fontRenderer.drawStringWithShadow(ChatFormatting.BOLD + "Welcome to Safepoint.club, " + ChatFormatting.RESET + Minecraft.getMinecraft().player.getName().toString() + ":)", renderX, renderY, AC_ClickGui.getInstance().color.getColor().getRGB());
     }
 
     public boolean isInsideDragField(int mouseX, int mouseY) {

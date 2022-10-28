@@ -5,7 +5,7 @@ import thefellas.safepoint.modules.Module;
 import thefellas.safepoint.modules.ModuleInfo;
 
 @ModuleInfo(name = "Hud Editor", category = Module.Category.Core, description = "Edits the hud ye")
-public class HudEditor extends Module {
+public class AB_HudEditor extends Module {
 
     @Override
     public void onEnable() {
