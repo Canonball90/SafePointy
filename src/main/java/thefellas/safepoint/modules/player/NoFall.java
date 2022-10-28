@@ -11,6 +11,7 @@ public class NoFall extends Module {
 
     @SubscribeEvent
     public void OnUpdate(TickEvent.PlayerTickEvent e) {
+        if(nullCheck()) return;
         if (mc.player.fallDistance >= 3) {
             mc.player.connection.sendPacket(new CPacketPlayer.Position(mc.player.posX, mc.player.posY, mc.player.posZ, true));
             mc.player.fallDistance = 0f;

@@ -48,6 +48,7 @@ public class AutoCrystal extends Module {
 
     @SubscribeEvent
     public void onUpdate(TickEvent.ClientTickEvent event) {
+        if(nullCheck()) return;
         Entity target = getTarget((int) range.getValue());
         if(target != null) {
             if(mc.player.getDistance(target) > range.getValue() || !target.isEntityAlive() || target.isDead ) {

@@ -43,6 +43,7 @@ public class ElytraFly extends Module {
     }
     @SubscribeEvent
     public void onPlayerTick(TickEvent.PlayerTickEvent playerTickEvent) {
+        if(nullCheck()) return;
         if (mc.player.isElytraFlying()) {
             float yaw = (float) Math.toRadians(ElytraFly.mc.player.rotationYaw);
             double sped = 10 / 10.0;

@@ -16,9 +16,7 @@ public class FakePlayer extends Module {
 
     @Override
     public void onEnable() {
-        if (mc.world == null || mc.player == null)
-            return;
-
+        if(nullCheck()) return;
         fake_player = new EntityOtherPlayerMP(mc.world, new GameProfile(UUID.fromString("12cbdfad-33b7-4c07-aeac-01766e609482"), name.getValue()));
         fake_player.copyLocationAndAnglesFrom(mc.player);
         fake_player.inventory = mc.player.inventory;

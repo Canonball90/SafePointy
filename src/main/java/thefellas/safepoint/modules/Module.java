@@ -25,6 +25,10 @@ public class Module {
         initializeModule();
     }
 
+    public boolean nullCheck() {
+        return mc == null || mc.player == null || mc.world == null;
+    }
+
     public void initializeModule() {
     }
 

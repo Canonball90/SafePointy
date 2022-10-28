@@ -11,6 +11,7 @@ public class Strafe extends Module {
 
     @Override
     public void onTick() {
+        if(nullCheck()) return;
         Strafe.mc.player.setSprinting(true);
         ++this.delay;
         Strafe.mc.player.motionY *= 0.985;

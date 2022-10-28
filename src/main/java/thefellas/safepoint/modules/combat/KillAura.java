@@ -41,6 +41,7 @@ public class KillAura extends Module {
 
     @SubscribeEvent
     public void onUpdate(TickEvent.PlayerTickEvent event) {
+        if(nullCheck()) return;
         if(target != null) {
             if (target.getDistance(mc.player) >= range.getValue() || target.isDead || !target.isEntityAlive())
                 target = null;

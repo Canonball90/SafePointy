@@ -26,6 +26,7 @@ public class PacketEXP extends Module {
 
     @Override
     public void onTick() {
+        if(nullCheck()) return;
         if (triggerMode.getValue().equals("RightClick") && !mc.gameSettings.keyBindUseItem.isKeyDown())
             return;
 

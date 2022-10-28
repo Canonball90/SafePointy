@@ -10,6 +10,7 @@ public class AutoRespawn extends Module {
 
     @SubscribeEvent
     public void onUpdate(TickEvent.PlayerTickEvent e) {
+        if(nullCheck()) return;
         if (mc.player.isDead){
             mc.player.respawnPlayer();
         }
