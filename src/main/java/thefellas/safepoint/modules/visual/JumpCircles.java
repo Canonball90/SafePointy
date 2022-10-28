@@ -19,7 +19,7 @@ import java.util.List;
 public class JumpCircles extends Module {
     static List<Circle> circles = new ArrayList();
     static final byte MAX_JC_TIME = 20;
-    public EnumSetting mode = new EnumSetting("Mode", "Default", Arrays.asList("Default", "Disc(CRASHES)"), this);
+    public EnumSetting mode = new EnumSetting("Mode", "Default", Arrays.asList("Default", "Disc"), this);
 
     @Override
     public void onTick(){
@@ -73,7 +73,7 @@ public class JumpCircles extends Module {
             GL11.glEnable(GL11.GL_ALPHA_TEST);
             GlStateManager.resetColor();
             GL11.glPopMatrix();
-        } else if (mode.getValue().equals("Disc(CRASHES)")) {
+        } else if (mode.getValue().equals("Disc")) {
             GL11.glPushMatrix();
             GL11.glTranslated(ix, iy, iz);
             GL11.glDisable(GL11.GL_CULL_FACE);
@@ -83,22 +83,24 @@ public class JumpCircles extends Module {
             GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
             GL11.glShadeModel(GL11.GL_SMOOTH);
             Collections.reverse(circles);
-            for (Circle c : JumpCircles.circles) {
-                double x = c.position().x;
-                double y = c.position().y;
-                double z = c.position().z;
-                float k = (float) c.existed / MAX_JC_TIME;
-                float start = k * 2.5f;
-                float end = start + 1f - k;
-                GL11.glBegin(GL11.GL_QUAD_STRIP);
-                for (int i = 0; i <= 360; i = i + 5) {
-                    GL11.glColor4f((float) c.color().x, (float) c.color().y, (float) c.color().z, 0.7f * (1 - ((float) c.existed / MAX_JC_TIME)));
-                    GL11.glVertex3d(x + Math.cos(Math.toRadians(i)) * start, y, z + Math.sin(Math.toRadians(i)) * start);
-                    GL11.glColor4f(1, 1, 1, 0.01f * (1 - ((float) c.existed / MAX_JC_TIME)));
-                    GL11.glVertex3d(x + Math.cos(Math.toRadians(i)) * end, y, z + Math.sin(Math.toRadians(i)) * end);
+            try {
+                for (Circle c : JumpCircles.circles) {
+                    double x = c.position().x;
+                    double y = c.position().y;
+                    double z = c.position().z;
+                    float k = (float) c.existed / MAX_JC_TIME;
+                    float start = k * 2.5f;
+                    float end = start + 1f - k;
+                    GL11.glBegin(GL11.GL_QUAD_STRIP);
+                    for (int i = 0; i <= 360; i = i + 5) {
+                        GL11.glColor4f((float) c.color().x, (float) c.color().y, (float) c.color().z, 0.7f * (1 - ((float) c.existed / MAX_JC_TIME)));
+                        GL11.glVertex3d(x + Math.cos(Math.toRadians(i)) * start, y, z + Math.sin(Math.toRadians(i)) * start);
+                        GL11.glColor4f(1, 1, 1, 0.01f * (1 - ((float) c.existed / MAX_JC_TIME)));
+                        GL11.glVertex3d(x + Math.cos(Math.toRadians(i)) * end, y, z + Math.sin(Math.toRadians(i)) * end);
+                    }
+                    GL11.glEnd();
                 }
-                GL11.glEnd();
-            }
+            } catch (Exception ignored) {}
             Collections.reverse(circles);
             GL11.glEnable(GL11.GL_TEXTURE_2D);
             GL11.glDisable(GL11.GL_BLEND);

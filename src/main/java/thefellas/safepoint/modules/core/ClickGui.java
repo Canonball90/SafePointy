@@ -16,8 +16,9 @@ public class ClickGui extends Module {
     public ColorSetting color = new ColorSetting("Color", new Color(255, 255, 255, 255), this);
     public IntegerSetting integerSetting = new IntegerSetting("I", 100, 0, 500, this);
     public BooleanSetting background = new BooleanSetting("Background", true, this);
+    public BooleanSetting particles = new BooleanSetting("Particles", true, this, v -> background.getValue());
     public ColorSetting backgroundColor = new ColorSetting("Background Color", new Color(0, 0, 0, 50), this,  v -> background.getValue());
-    public ColorSetting backgroundColor2 = new ColorSetting("Background Color 2", new Color(0, 0, 0, 50), this,  v -> background.getValue());
+    public ColorSetting backgroundColor2 = new ColorSetting("Background Color 2", new Color(255, 0, 0, 50), this,  v -> background.getValue());
 
     @Override
     public void initializeModule() {

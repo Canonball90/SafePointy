@@ -5,6 +5,7 @@ import thefellas.safepoint.clickgui.windows.Window;
 import thefellas.safepoint.modules.Module;
 import net.minecraft.client.gui.GuiScreen;
 import thefellas.safepoint.utils.RenderUtil;
+import thefellas.safepoint.utils.particle.ParticleSystem;
 
 import java.awt.*;
 import java.io.IOException;
@@ -13,8 +14,10 @@ import java.util.ArrayList;
 public class ClickGui extends GuiScreen {
     static ClickGui INSTANCE = new ClickGui();
     ArrayList<Window> windows = new ArrayList<>();
+    private final ParticleSystem particleSystem;
 
     public ClickGui() {
+        this.particleSystem = new ParticleSystem(150);
         setInstance();
         load();
     }
@@ -34,6 +37,10 @@ public class ClickGui extends GuiScreen {
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         if(thefellas.safepoint.modules.core.ClickGui.getInstance().background.getValue()) {
             RenderUtil.drawGradient(0, 0, width, height, new Color(thefellas.safepoint.modules.core.ClickGui.getInstance().backgroundColor.getValue().getRed(),thefellas.safepoint.modules.core.ClickGui.getInstance().backgroundColor.getValue().getGreen(),thefellas.safepoint.modules.core.ClickGui.getInstance().backgroundColor.getValue().getBlue(), 130).getRGB(), new Color(thefellas.safepoint.modules.core.ClickGui.getInstance().backgroundColor2.getValue().getRed(),thefellas.safepoint.modules.core.ClickGui.getInstance().backgroundColor2.getValue().getGreen(),thefellas.safepoint.modules.core.ClickGui.getInstance().backgroundColor2.getValue().getBlue(), 130).getRGB());
+            if(thefellas.safepoint.modules.core.ClickGui.getInstance().particles.getValue()){
+                this.particleSystem.tick(20);
+                this.particleSystem.render();
+            }
         }
         //RenderUtil.drawGradient(0, 0, width, height, new Color(211, 0, 255, 128).getRGB(), new Color(255, 0, 58, 128).getRGB());
         windows.forEach(windows -> windows.drawScreen(mouseX, mouseY, partialTicks));

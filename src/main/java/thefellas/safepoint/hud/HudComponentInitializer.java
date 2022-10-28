@@ -1,6 +1,7 @@
 package thefellas.safepoint.hud;
 
 import thefellas.safepoint.hud.hudcomponents.HudTargetComponent;
+import thefellas.safepoint.hud.hudcomponents.HudArrayListComponent;
 import thefellas.safepoint.hud.hudcomponents.HudWatermarkComponent;
 import thefellas.safepoint.hud.hudcomponents.HudWelcomerComponent;
 
@@ -29,6 +30,7 @@ public class HudComponentInitializer {
         hudModules.add(new HudWatermarkComponent());
         hudModules.add(new HudWelcomerComponent());
         hudModules.add(new HudTargetComponent());
+        hudModules.add(new HudArrayListComponent());
     }
 
     public ArrayList<HudModule> getHudModules() {
