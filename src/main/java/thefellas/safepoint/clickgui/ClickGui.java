@@ -82,7 +82,7 @@ public class ClickGui extends GuiScreen {
         int x = -130;
         assert Safepoint.moduleInitializer != null;
         for (Module.Category categories : Safepoint.moduleInitializer.getCategories())
-            windows.add(new Window(categories.toString(), x += 134, 13, 130, 10, categories));
+            windows.add(new Window(categories.toString(), x += 134, 13, AC_ClickGui.getInstance().width.getValue(), 10, categories));//130 width
     }
 
     @Override
