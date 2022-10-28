@@ -1,0 +1,21 @@
+[
+  {
+    "modid": "safepoint",
+    "name": "SafePoint",
+    "description": "Client",
+    "version": "",
+    "mcversion": "",
+    "url": "",
+    "updateUrl": "",
+    "authorList": [
+      "CanonBall90",
+      "Nitaki_",
+      "xracer",
+      "Kisman"
+    ],
+    "credits": "",
+    "logoFile": "",
+    "screenshots": [],
+    "dependencies": []
+  }
+]
