@@ -17,6 +17,7 @@ public class AC_ClickGui extends Module {
     public IntegerSetting integerSetting = new IntegerSetting("I", 100, 0, 500, this);
     public BooleanSetting background = new BooleanSetting("Background", true, this);
     public BooleanSetting particles = new BooleanSetting("Particles", true, this, v -> background.getValue());
+    public BooleanSetting uwu = new BooleanSetting("Uwu", true, this, v -> background.getValue());
     public ColorSetting backgroundColor = new ColorSetting("Background Color", new Color(0, 0, 0, 50), this,  v -> background.getValue());
     public ColorSetting backgroundColor2 = new ColorSetting("Background Color 2", new Color(255, 0, 0, 50), this,  v -> background.getValue());
 

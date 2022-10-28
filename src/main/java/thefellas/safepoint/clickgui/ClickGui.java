@@ -47,7 +47,7 @@ public class ClickGui extends GuiScreen {
                 this.particleSystem.render();
             }
             int divi=6;
-            if(thefellas.safepoint.modules.core.ClickGui.getInstance().uwu.getValue()){
+            if(AC_ClickGui.getInstance().uwu.getValue()){
                 mc.renderEngine.bindTexture(neku);
                 drawScaledCustomSizeModalRect(Minecraft.getMinecraft().currentScreen.width - (1189 / divi), Minecraft.getMinecraft().currentScreen.height - (1620 / divi), 0, 0, 1189 / divi, 1620 / divi, 1189 / divi, 1620 / divi, 1189 / divi, 1620 / divi);
             }
