@@ -1,5 +1,7 @@
 package thefellas.safepoint.clickgui;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.util.ResourceLocation;
 import thefellas.safepoint.Safepoint;
 import thefellas.safepoint.clickgui.windows.Window;
 import thefellas.safepoint.modules.Module;
@@ -34,6 +36,8 @@ public class ClickGui extends GuiScreen {
         INSTANCE = this;
     }
 
+    private final ResourceLocation neku = new ResourceLocation("owo.png");
+
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         if(AC_ClickGui.getInstance().background.getValue()) {
@@ -41,6 +45,11 @@ public class ClickGui extends GuiScreen {
             if(AC_ClickGui.getInstance().particles.getValue()){
                 this.particleSystem.tick(20);
                 this.particleSystem.render();
+            }
+            int divi=6;
+            if(thefellas.safepoint.modules.core.ClickGui.getInstance().uwu.getValue()){
+                mc.renderEngine.bindTexture(neku);
+                drawScaledCustomSizeModalRect(Minecraft.getMinecraft().currentScreen.width - (1189 / divi), Minecraft.getMinecraft().currentScreen.height - (1620 / divi), 0, 0, 1189 / divi, 1620 / divi, 1189 / divi, 1620 / divi, 1189 / divi, 1620 / divi);
             }
         }
         //RenderUtil.drawGradient(0, 0, width, height, new Color(211, 0, 255, 128).getRGB(), new Color(255, 0, 58, 128).getRGB());
