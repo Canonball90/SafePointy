@@ -23,6 +23,7 @@ public class JumpCircles extends Module {
 
     @Override
     public void onTick(){
+        if(nullCheck()) return;
         if (mc.player.motionY==0.33319999363422365){
             handleEntityJump(mc.player);
         }
