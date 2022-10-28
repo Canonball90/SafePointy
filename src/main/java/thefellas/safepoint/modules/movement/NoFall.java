@@ -1,4 +1,4 @@
-package thefellas.safepoint.modules.player;
+package thefellas.safepoint.modules.movement;
 
 import net.minecraft.network.play.client.CPacketPlayer;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -6,7 +6,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 import thefellas.safepoint.modules.Module;
 import thefellas.safepoint.modules.ModuleInfo;
 
-@ModuleInfo(name = "NoFall", description = "Negates fall damage",category = Module.Category.Player)
+@ModuleInfo(name = "NoFall", description = "Negates fall damage",category = Module.Category.Movement)
 public class NoFall extends Module {
 
     @SubscribeEvent

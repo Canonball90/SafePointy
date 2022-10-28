@@ -93,7 +93,7 @@ public class Window {
         }
         if (mouseButton == 1 && isInside(mouseX, mouseY)) {
             isOpened = !isOpened;
-            Safepoint.mc.getSoundHandler().playSound(PositionedSoundRecord.getMasterRecord(SoundEvents.UI_BUTTON_CLICK, 1.0f));
+//            if (ClickGui.getInstance().clickSound.getValue()) Safepoint.mc.getSoundHandler().playSound(PositionedSoundRecord.getMasterRecord(SoundEvents.UI_BUTTON_CLICK, 1.0f));
         }
         if (isOpened)
             modules.forEach(modules -> modules.mouseClicked(mouseX, mouseY, mouseButton));

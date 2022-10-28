@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="build/tmp/expandedArchives/forge-1.12.2-14.23.5.2855_mapped_stable_39-1.12-sources.jar_57df273f78fe31bd5bc6cc01eaa000bd"/>
+	<classpathentry kind="src" path="build/tmp/expandedArchives/forge-1.12.2-14.23.5.2855-inject_src.jar_9dc3fbaa5ca7b66255ea5693cd3b5294"/>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="lib" path="gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="output" path="build/_compileJava_3"/>
+</classpath>

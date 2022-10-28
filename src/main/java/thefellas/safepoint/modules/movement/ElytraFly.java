@@ -9,7 +9,6 @@ import thefellas.safepoint.settings.impl.FloatSetting;
 
 @ModuleInfo(name = "ElytraFly", description = "Makes flying with an elytra easier", category = Module.Category.Movement)
 public class ElytraFly extends Module {
-
     FloatSetting speed = new FloatSetting("Speed", 1, 1, 3, this);
     DoubleSetting Upspeed = new DoubleSetting("Up-Speed", 1.0, 0.1, 3.0, this);
     DoubleSetting Downspeed = new DoubleSetting("Down-Speed", 1.0, 0.1, 3.0, this);
