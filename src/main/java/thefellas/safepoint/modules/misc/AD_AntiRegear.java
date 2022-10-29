@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @ModuleInfo(name = "AntiRegear", description = "Prevents you from regearing", category = Module.Category.Misc)
-public class AntiRegear extends Module {
+public class AD_AntiRegear extends Module {
     IntegerSetting range = new IntegerSetting("Range", 5, 0, 6, this);
     BooleanSetting switchToPick = new BooleanSetting("SwitchToPick", true, this);
 

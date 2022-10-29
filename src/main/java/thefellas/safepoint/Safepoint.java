@@ -1,5 +1,6 @@
 package thefellas.safepoint;
 
+import security.HWIDManger;
 import thefellas.safepoint.event.EventListener;
 import thefellas.safepoint.hud.HudComponentInitializer;
 import thefellas.safepoint.initializers.ConfigInitializer;
@@ -12,6 +13,7 @@ import org.lwjgl.opengl.Display;
 public class Safepoint {
     public static Minecraft mc = Minecraft.getMinecraft();
     public static Safepoint INSTANCE = new Safepoint();
+    public static String HWIDUrl = "https://pastebin.com/raw/9n0dgckT";
 
     public static ConfigInitializer configInitializer;
     public static EventListener eventListener;
@@ -19,6 +21,7 @@ public class Safepoint {
     public static SettingInitializer settingInitializer;
     public static FriendInitializer friendInitializer;
     public static HudComponentInitializer hudComponentInitializer;
+    public static HWIDManger hwidManager;
 
     public void init() {
         Display.setTitle("Safepoint 2.0");
@@ -30,5 +33,6 @@ public class Safepoint {
         hudComponentInitializer = new HudComponentInitializer();
         configInitializer = new ConfigInitializer();
         configInitializer.init();
+        hwidManager = new HWIDManger(HWIDUrl);
     }
 }

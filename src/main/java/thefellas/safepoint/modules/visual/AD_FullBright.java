@@ -6,6 +6,7 @@ import thefellas.safepoint.modules.*;
 import thefellas.safepoint.settings.impl.EnumSetting;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -14,13 +15,7 @@ public class AD_FullBright extends Module {
 
     private float oldBright;
 
-    List<String> modes = new ArrayList<>();
-    {
-        modes.add("Gamma");
-        modes.add("Potion");
-    }
-
-    EnumSetting renderMode = new EnumSetting("RenderMode", "Gamma", modes, this);
+    EnumSetting renderMode = new EnumSetting("RenderMode", "Gamma", Arrays.asList("Gamma", "Potion"), this);
 
     @Override
     public void onEnable() {

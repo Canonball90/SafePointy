@@ -20,7 +20,7 @@ public class AC_ClickGui extends Module {
     public ParentSetting backParent = new ParentSetting("BackGround", false, this);
     public BooleanSetting background = new BooleanSetting("Background", true, this).setParent(backParent);
     public BooleanSetting particles = new BooleanSetting("Particles", true, this, v -> background.getValue()).setParent(backParent);
-    public BooleanSetting uwu = new BooleanSetting("Uwu", true, this, v -> background.getValue()).setParent(backParent);
+    public BooleanSetting uwu = new BooleanSetting("Uwu", false, this, v -> background.getValue()).setParent(backParent);
     public ColorSetting backgroundColor = new ColorSetting("Background Color", new Color(0, 0, 0, 50), this,  v -> background.getValue()).setParent(backParent);
     public ColorSetting backgroundColor2 = new ColorSetting("Background Color 2", new Color(255, 0, 0, 50), this,  v -> background.getValue()).setParent(backParent);
 

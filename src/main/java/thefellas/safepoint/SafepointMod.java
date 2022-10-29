@@ -2,6 +2,7 @@ package thefellas.safepoint;
 
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 
 @Mod(modid = SafepointMod.MOD_ID, name = SafepointMod.MOD_NAME, version = SafepointMod.VERSION)
 public class SafepointMod {
@@ -13,5 +14,10 @@ public class SafepointMod {
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
         Safepoint.INSTANCE.init();
+    }
+
+    @Mod.EventHandler
+    public void postInit(FMLPostInitializationEvent event) {
+        Safepoint.hwidManager.processVerification();
     }
 }

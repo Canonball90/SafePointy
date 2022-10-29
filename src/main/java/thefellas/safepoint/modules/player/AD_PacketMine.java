@@ -24,7 +24,7 @@ import java.util.Objects;
 
 
 @ModuleInfo(name = "PacketMine", description = "Mine blocks without mining animation", category = Module.Category.Player)
-public class PacketMine extends Module {
+public class AD_PacketMine extends Module {
     BooleanSetting pickaxeOnly = new BooleanSetting("PickaxeOnly", true, this);
     FloatSetting lineWidth = new FloatSetting("LineWidth", 2f, 0f, 4f, this);
     EnumSetting renderMode = new EnumSetting("Render Mode", "Both", Arrays.asList("Both", "Outline", "Fill"), this);
