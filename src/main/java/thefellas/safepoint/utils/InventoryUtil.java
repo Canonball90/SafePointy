@@ -3,13 +3,14 @@ package thefellas.safepoint.utils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.inventory.ClickType;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.play.client.CPacketHeldItemChange;
 
 public class InventoryUtil {
     public static int getItemHotbar(Item item) {
-        for(int i = 0; i < 9; i++) {
-            if(Minecraft.getMinecraft().player.inventory.getStackInSlot(i).getItem() == item) {
+        for (int i = 0; i < 9; i++) {
+            if (Minecraft.getMinecraft().player.inventory.getStackInSlot(i).getItem() == item) {
                 return i;
             }
         }
@@ -17,8 +18,8 @@ public class InventoryUtil {
     }
 
     public static int getItemInventory(Item item, boolean hotbar) {
-        for(int i = (hotbar ? 0 : 9); i < 36; i++) {
-            if(Minecraft.getMinecraft().player.inventory.getStackInSlot(i).getItem() == item) {
+        for (int i = (hotbar ? 0 : 9); i < 36; i++) {
+            if (Minecraft.getMinecraft().player.inventory.getStackInSlot(i).getItem() == item) {
                 return i;
             }
         }
@@ -27,12 +28,12 @@ public class InventoryUtil {
 
     public static int getTotalAmountOfItem(Item item) {
         int amountOfItem = 0;
-        for(int i = 0; i < 36; i++) {
+        for (int i = 0; i < 36; i++) {
             ItemStack stack = Minecraft.getMinecraft().player.inventory.getStackInSlot(i);
-            if(stack.getItem() == item)
+            if (stack.getItem() == item)
                 amountOfItem += stack.getCount();
         }
-        if(Minecraft.getMinecraft().player.getHeldItemOffhand().getItem() == item)
+        if (Minecraft.getMinecraft().player.getHeldItemOffhand().getItem() == item)
             amountOfItem += Minecraft.getMinecraft().player.getHeldItemOffhand().getCount();
         return amountOfItem;
     }
@@ -52,5 +53,22 @@ public class InventoryUtil {
         Minecraft.getMinecraft().player.connection.sendPacket(new CPacketHeldItemChange(slot));
         Minecraft.getMinecraft().player.inventory.currentItem = slot;
         Minecraft.getMinecraft().playerController.updateController();
+    }
+
+    public static int findHotbarBlock(final Class c) {
+        for (int i = 0; i < 9; ++i) {
+            final ItemStack stack = Minecraft.getMinecraft().player.inventory.getStackInSlot(i);
+            if (stack != ItemStack.EMPTY) {
+                if (c.isInstance(stack.getItem())) {
+                    return i;
+                }
+                if (stack.getItem() instanceof ItemBlock) {
+                    if (c.isInstance(((ItemBlock) stack.getItem()).getBlock())) {
+                        return i;
+                    }
+                }
+            }
+        }
+        return -1;
     }
 }

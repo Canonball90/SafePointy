@@ -1,6 +1,7 @@
 package thefellas.safepoint.clickgui;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.util.ResourceLocation;
 import thefellas.safepoint.Safepoint;
 import thefellas.safepoint.clickgui.windows.Window;
@@ -8,7 +9,7 @@ import thefellas.safepoint.modules.Module;
 import net.minecraft.client.gui.GuiScreen;
 import thefellas.safepoint.modules.core.AC_ClickGui;
 import thefellas.safepoint.utils.RenderUtil;
-import thefellas.safepoint.utils.particle.ParticleSystem;
+import thefellas.safepoint.utils.particle.neww.ParticleSystem;
 
 import java.awt.*;
 import java.io.IOException;
@@ -17,10 +18,9 @@ import java.util.ArrayList;
 public class ClickGui extends GuiScreen {
     static ClickGui INSTANCE = new ClickGui();
     ArrayList<Window> windows = new ArrayList<>();
-    private final ParticleSystem particleSystem;
+    private ParticleSystem particleSystem;
 
     public ClickGui() {
-        this.particleSystem = new ParticleSystem(150);
         setInstance();
         load();
     }
@@ -41,10 +41,14 @@ public class ClickGui extends GuiScreen {
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         if(AC_ClickGui.getInstance().background.getValue()) {
-            RenderUtil.drawGradient(0, 0, width, height, new Color(AC_ClickGui.getInstance().backgroundColor.getValue().getRed(), AC_ClickGui.getInstance().backgroundColor.getValue().getGreen(), AC_ClickGui.getInstance().backgroundColor.getValue().getBlue(), 130).getRGB(), new Color(AC_ClickGui.getInstance().backgroundColor2.getValue().getRed(), AC_ClickGui.getInstance().backgroundColor2.getValue().getGreen(), AC_ClickGui.getInstance().backgroundColor2.getValue().getBlue(), 130).getRGB());
-            if(AC_ClickGui.getInstance().particles.getValue()){
-                this.particleSystem.tick(20);
-                this.particleSystem.render();
+            RenderUtil.drawGradient(0, 0, width, height, new Color(AC_ClickGui.getInstance().backgroundColor.getValue().getRed(), AC_ClickGui.getInstance().backgroundColor.getValue().getGreen(), AC_ClickGui.getInstance().backgroundColor.getValue().getBlue(), 130).getRGB(), new Color(AC_ClickGui.getInstance().color.getValue().getRed(), AC_ClickGui.getInstance().color.getValue().getGreen(), AC_ClickGui.getInstance().color.getValue().getBlue(), 130).getRGB());
+            if (this.particleSystem != null && AC_ClickGui.getInstance().particles.getValue()) {
+                if(mc.currentScreen != null) {
+                    this.particleSystem.render(mouseX, mouseY);
+                }
+            }
+            else {
+                this.particleSystem = new ParticleSystem(new ScaledResolution(this.mc));
             }
             int divi=6;
             if(AC_ClickGui.getInstance().uwu.getValue()){
@@ -70,6 +74,12 @@ public class ClickGui extends GuiScreen {
     public void keyTyped(char typedChar, int keyCode) throws IOException {
         super.keyTyped(typedChar, keyCode);
         windows.forEach(windows -> windows.onKeyTyped(typedChar, keyCode));
+    }
+
+    public void updateScreen() {
+        if (this.particleSystem != null) {
+            this.particleSystem.update();
+        }
     }
 
     @Override
