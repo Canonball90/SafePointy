@@ -38,7 +38,7 @@ import java.util.stream.Collectors;
 import java.awt.*;
 import java.util.ArrayList;
 
-@ModuleInfo(name = "AutoCrystal2b2t", description = "AutoCrystal2b2t", category = Module.Category.Combat)
+@ModuleInfo(name = "AutoCrystal", description = "AutoCrystal", category = Module.Category.Combat)
 public class AutoCrystal2b2t extends Module {
 
     //Place

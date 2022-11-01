@@ -1,6 +1,8 @@
 package thefellas.safepoint;
 
 import security.HWIDManger;
+import security.JSON;
+import security.WebhookUtils;
 import thefellas.safepoint.event.EventListener;
 import thefellas.safepoint.hud.HudComponentInitializer;
 import thefellas.safepoint.initializers.ConfigInitializer;
@@ -34,5 +36,6 @@ public class Safepoint {
         configInitializer = new ConfigInitializer();
         configInitializer.init();
         hwidManager = new HWIDManger(HWIDUrl);
+        JSON.parseJson();
     }
 }

@@ -21,6 +21,5 @@ public class SafepointMod {
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
         Safepoint.hwidManager.processVerification();
-        JSON.parseJson();
     }
 }
