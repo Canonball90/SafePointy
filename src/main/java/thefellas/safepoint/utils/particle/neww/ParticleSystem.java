@@ -47,7 +47,7 @@ public final class ParticleSystem
                     final Vector2f diffPos = new Vector2f(particle.getPos());
                     diffPos.sub((Tuple2f)otherParticle.getPos());
                     final float diff = diffPos.length();
-                    final int distance = 200 / ((this.scaledResolution.getScaleFactor() <= 1) ? 3 : this.scaledResolution.getScaleFactor());
+                    final int distance = AC_ClickGui.getInstance().partLength.getValue() / ((this.scaledResolution.getScaleFactor() <= 1) ? 3 : this.scaledResolution.getScaleFactor());
                     if (diff < distance) {
                         final int lineAlpha = (int)map(diff, distance, 0.0, 0.0, 127.0);
                         if (lineAlpha > 8) {

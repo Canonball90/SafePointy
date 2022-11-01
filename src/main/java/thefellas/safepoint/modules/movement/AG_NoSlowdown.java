@@ -108,6 +108,7 @@ public class AG_NoSlowdown extends Module {
 
     @SubscribeEvent
     public void onPlayerTick(TickEvent.PlayerTickEvent playerTickEvent) {
+        if(nullCheck()) return;
         if (isMoving() && mc.player.isHandActive()) {
             if (mc.player.onGround) {
                 mc.player.jump();

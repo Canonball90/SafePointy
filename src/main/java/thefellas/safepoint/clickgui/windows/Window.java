@@ -45,7 +45,7 @@ public class Window {
 
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         dragScreen(mouseX, mouseY);
-        RenderUtil.drawRect(x - 1, y, x + width + 1, y + height, AC_ClickGui.getInstance().color.getColor().getRGB());
+        RenderUtil.drawRect(x, y, x + width, y + height, AC_ClickGui.getInstance().color.getColor().getRGB());
         Safepoint.mc.fontRenderer.drawStringWithShadow(name, x + (width / 2f) - (Safepoint.mc.fontRenderer.getStringWidth(name) / 2f), y + (height / 2f) - (Safepoint.mc.fontRenderer.FONT_HEIGHT / 2f), -1);
         if (isOpened) {
             modules.clear();

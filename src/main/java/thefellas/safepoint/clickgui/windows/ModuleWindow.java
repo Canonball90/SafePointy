@@ -70,7 +70,7 @@ public class ModuleWindow {
             RenderUtil.drawRect(x + 1, y, x + width - 1, y + height, new Color(0, 0, 0, 100).getRGB());
             Safepoint.mc.fontRenderer.drawStringWithShadow(module.getDescription(), x, 3, -1);
         }
-        Safepoint.mc.fontRenderer.drawStringWithShadow(name, isInside(mouseX, mouseY) ? x + 2 : x + 1, y + (height / 2f) - (Safepoint.mc.fontRenderer.FONT_HEIGHT / 2f), -1);
+        Safepoint.mc.fontRenderer.drawStringWithShadow(name, isInside(mouseX, mouseY) ? x + 3 : x + 2, y + (height / 2f) - (Safepoint.mc.fontRenderer.FONT_HEIGHT / 2f), -1);
         if (module.isOpened) {
             int y = this.y;
             for (Button button : newButton) {
