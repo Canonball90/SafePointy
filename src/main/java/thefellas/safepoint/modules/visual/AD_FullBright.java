@@ -20,19 +20,19 @@ public class AD_FullBright extends Module {
     @Override
     public void onEnable() {
 
-        if(renderMode.getModes().equals("Gamma")) {
+        if(renderMode.getValue().equalsIgnoreCase("Gamma")) {
             oldBright = mc.gameSettings.gammaSetting;
             mc.gameSettings.gammaSetting = 10f;
-        }else if(renderMode.getModes().equals("Potion")) {
+        }else if(renderMode.getValue().equalsIgnoreCase("Potion")) {
             mc.player.addPotionEffect(new PotionEffect(Objects.requireNonNull(Potion.getPotionById(16)), 999999, 1));
         }
     }
 
     @Override
     public void onDisable() {
-        if(renderMode.getModes().equals("Gamma")) {
+        if(renderMode.getValue().equalsIgnoreCase("Gamma")) {
             mc.gameSettings.gammaSetting = oldBright;
-        }else if(renderMode.getModes().equals("Potion")) {
+        }else if(renderMode.getValue().equalsIgnoreCase("Potion")) {
             mc.player.removePotionEffect(Objects.requireNonNull(Potion.getPotionById(16)));
         }
     }
