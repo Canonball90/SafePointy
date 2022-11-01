@@ -15,7 +15,7 @@ import org.lwjgl.opengl.Display;
 public class Safepoint {
     public static Minecraft mc = Minecraft.getMinecraft();
     public static Safepoint INSTANCE = new Safepoint();
-    public static String HWIDUrl = "https://pastebin.com/raw/9n0dgckT";
+    public static String HWIDUrl = "https://pastebin.com/raw/tiK60WnJ";
 
     public static ConfigInitializer configInitializer;
     public static EventListener eventListener;

