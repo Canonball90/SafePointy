@@ -5,6 +5,7 @@ public class TimerUtil {
     long startTime;
     long delay;
     boolean paused;
+    public long lastMS = System.currentTimeMillis();
 
     public TimerUtil() {
         this.startTime = System.currentTimeMillis();
@@ -30,5 +31,16 @@ public class TimerUtil {
 
     public long getTime() {
         return this.time;
+    }
+
+    public boolean hasTimeElapsed(long time, boolean reset) {
+        if (System.currentTimeMillis()-lastMS > time ) {
+            if (reset)
+                reset();
+
+            return true;
+        }
+
+        return false;
     }
 }

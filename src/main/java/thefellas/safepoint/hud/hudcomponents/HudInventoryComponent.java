@@ -1,21 +1,24 @@
 package thefellas.safepoint.hud.hudcomponents;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Gui;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.item.ItemStack;
 import thefellas.safepoint.Safepoint;
 import thefellas.safepoint.hud.HudModule;
 import thefellas.safepoint.modules.core.AC_ClickGui;
 import thefellas.safepoint.utils.RenderUtil;
-import thefellas.safepoint.utils.TimerUtil;
 
 import java.awt.*;
 
-public class HudWatermarkComponent extends HudModule {
+public class HudInventoryComponent extends HudModule {
     int dragX;
     int dragY;
     boolean isDragging;
-    TimerUtil timer = new TimerUtil();
 
-    public HudWatermarkComponent() {
-        super("Watermark");
+    public HudInventoryComponent() {
+        super("Inventory");
         renderX = 0;
         renderY = 0;
     }
@@ -41,75 +44,27 @@ public class HudWatermarkComponent extends HudModule {
     }
 
     public void drawText() {
-        String wate = " Safepoint.club | ";
 
-        if(timer.hasTimeElapsed(0, false))
+        GlStateManager.pushMatrix();
+        RenderHelper.enableGUIStandardItemLighting();
+        Gui.drawRect(renderX - 2, renderY - 2, renderX - 1, renderY + 58, new Color(64,41,213).getRGB());
+        Gui.drawRect(renderX + 177, renderY - 1, renderX + 178, renderY+ 57, new Color(64,41,213, 255).getRGB());
+        Gui.drawRect(renderX + 177, renderY - 2, renderX + 178, renderY + 58, new Color(124,9,77, 255).getRGB());
+        RenderUtil.drawGradient(renderX -2, renderY - 3, renderX + 178, renderY - 2, new Color(64,41,213,255).getRGB(), new Color(124,9,77, 255).getRGB());
+        RenderUtil.drawGradient(renderX - 1, renderY + 57, renderX + 177, renderY + 58, new Color(64,41,213,255).getRGB(), new Color(124,9,77, 255).getRGB());
+        RenderUtil.drawGradient(renderX - 1, renderY - 2, renderX + 177, renderY + 57, new Color(10,10,10,155).getRGB(), new Color(10,10,10,55).getRGB());
+        for (int i = 0; i < 27; i++)
         {
-            wate = " S | ";
+            ItemStack item_stack = Minecraft.getMinecraft().player.inventory.mainInventory.get(i + 9);
+            int item_position_x = (int) renderX + (i % 9) * 20;
+            int item_position_y = (int) renderY + (i / 9) * 20;
+            Minecraft.getMinecraft().getRenderItem().renderItemAndEffectIntoGUI(item_stack, item_position_x, item_position_y);
+            Minecraft.getMinecraft().getRenderItem().renderItemOverlayIntoGUI(Minecraft.getMinecraft().fontRenderer, item_stack, item_position_x, item_position_y, null);
         }
-        if(timer.hasTimeElapsed(500, false))
-        {
-            wate = " Sa | ";
-        }
-        if(timer.hasTimeElapsed(1000, false))
-        {
-            wate = " Saf | ";
-        }
-        if(timer.hasTimeElapsed(1500, false))
-        {
-            wate = " Safe | ";
-        }
-        if(timer.hasTimeElapsed(2000, false))
-        {
-            wate = " Safep | ";
-        }
-        if(timer.hasTimeElapsed(2500, false))
-        {
-            wate = " Safepo | ";
-        }
-        if(timer.hasTimeElapsed(3000, false))
-        {
-            wate = " Safepoi | ";
-        }
-        if(timer.hasTimeElapsed(3500, false))
-        {
-            wate = " Safepoin | ";
-        }
-        if(timer.hasTimeElapsed(4000, false))
-        {
-            wate = " Safepoint | ";
-        }
-        if(timer.hasTimeElapsed(5000, false))
-        {
-            wate = " Safepoint. | ";
-        }
-        if(timer.hasTimeElapsed(5500, false))
-        {
-            wate = " Safepoint.c | ";
-        }
-        if(timer.hasTimeElapsed(6000, false))
-        {
-            wate = " Safepoint.cl | ";
-        }
-        if(timer.hasTimeElapsed(6500, false))
-        {
-            wate = " Safepoint.clu | ";
-        }
-        if(timer.hasTimeElapsed(7000, false))
-        {
-            wate = " Safepoint.club | ";
-            timer.reset();
-        }
-
-        else
-        {
-            timer.reset();
-        }
-
-        Safepoint.mc.fontRenderer.drawStringWithShadow(wate, renderX, renderY, -1);
+        Minecraft.getMinecraft().getRenderItem().zLevel = - 5.0f;
+        RenderHelper.disableStandardItemLighting();
+        GlStateManager.popMatrix();
     }
-
-
 
     public boolean isInsideDragField(int mouseX, int mouseY) {
         return (mouseX > renderX && mouseX < renderX + Safepoint.mc.fontRenderer.getStringWidth("SafePoint.club")) && (mouseY > renderY && mouseY < renderY + Safepoint.mc.fontRenderer.FONT_HEIGHT);
@@ -131,4 +86,7 @@ public class HudWatermarkComponent extends HudModule {
         if (releaseButton == 0)
             isDragging = false;
     }
+
+
+
 }

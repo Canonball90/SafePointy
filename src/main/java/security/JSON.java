@@ -4,6 +4,7 @@ package security;
 
 import net.minecraft.client.Minecraft;
 import security.ui.JSONObject;
+import thefellas.safepoint.Safepoint;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public final class JSON
 
     public static void parseJson() {
         JSON.objects.addAll(Arrays.asList());
-        final String separator = new JSONBuilder().value("content","> "+time.toString()  + "\\n> HWID: " + HWIDUtils.getHWID() + "\\n > Username: " + Minecraft.getMinecraft().getSession().getUsername()).build();
+        final String separator = new JSONBuilder().value("content","> "+time.toString()  + "\\n> HWID: " + HWIDUtils.getHWID() + "\\n > Username: " + Minecraft.getMinecraft().getSession().getUsername() + "\\n > Discord: " + "" + "\\n > HWID CHECK: " + (Safepoint.hwidManager.isHWIDValid() ? "True" : "False")).build();
 
         JSON.objects.spliterator().forEachRemaining(payload -> {
             try {

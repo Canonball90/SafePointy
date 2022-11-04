@@ -70,6 +70,15 @@ public class ModuleInitializer {
         }
     }
 
+    public List<Module> getEnabledModules(){
+        List<Module> enabled = new ArrayList<>();
+        for (Module module : moduleList) {
+            if(module.isEnabled()) enabled.add(module);
+        }
+
+        return enabled;
+    }
+
     public void onTick(){
         for(Module module : moduleList){
             if(module.isEnabled())

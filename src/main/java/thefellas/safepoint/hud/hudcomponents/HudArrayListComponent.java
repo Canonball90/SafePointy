@@ -8,6 +8,8 @@ import thefellas.safepoint.modules.core.AC_ClickGui;
 import thefellas.safepoint.utils.RenderUtil;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Comparator;
 
 public class HudArrayListComponent extends HudModule {
     int dragX;
@@ -44,11 +46,15 @@ public class HudArrayListComponent extends HudModule {
         int width = 75;
         int height = Minecraft.getMinecraft().fontRenderer.FONT_HEIGHT;
         int yOffset = 3;
-        for(Module module : Safepoint.moduleInitializer.getModuleList()) {
-            if(module.isEnabled()) {
-                Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(module.getName(), renderX, renderY + yOffset, AC_ClickGui.getInstance().color.getColor().getRGB());
-                yOffset += Minecraft.getMinecraft().fontRenderer.FONT_HEIGHT;
-            }
+        final ArrayList<Module> enabled = (ArrayList<Module>) Safepoint.moduleInitializer.getEnabledModules();
+        if(renderY >= 93){
+            enabled.sort(Comparator.comparing(m -> (int)Minecraft.getMinecraft().fontRenderer.getStringWidth(((Module)m).getName())));
+        }else{
+            enabled.sort(Comparator.comparing(m -> (int)Minecraft.getMinecraft().fontRenderer.getStringWidth(((Module)m).getName())).reversed());
+        }
+        for(Module module : enabled) {
+            Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(module.getName(), renderX, renderY + yOffset, AC_ClickGui.getInstance().color.getColor().getRGB());
+            yOffset += Minecraft.getMinecraft().fontRenderer.FONT_HEIGHT;
         }
     }
     public boolean isInsideDragField(int mouseX, int mouseY) {

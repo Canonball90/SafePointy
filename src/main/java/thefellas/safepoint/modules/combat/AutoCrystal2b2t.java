@@ -56,7 +56,11 @@ public class AutoCrystal2b2t extends Module {
 
     //render
     ParentSetting rendor = new ParentSetting("Render", false, this);
+    BooleanSetting gradient = new BooleanSetting("Gradient", false, this).setParent(rendor);
+    ColorSetting gColor1 = new ColorSetting("GradientColor1", new Color(255,0,0,100), this, v -> gradient.getValue()).setParent(rendor);
+    ColorSetting gColor2 = new ColorSetting("GradientColor2", new Color(255,0,0,100), this, v -> gradient.getValue()).setParent(rendor);
     ColorSetting color = new ColorSetting("Color", new Color(255,0,0,100), this).setParent(rendor);
+    IntegerSetting height = new IntegerSetting("Height", 1, 1, 10, this).setParent(rendor);
 
     //misc
     ParentSetting misc = new ParentSetting("Misc", false, this);
@@ -297,10 +301,15 @@ public class AutoCrystal2b2t extends Module {
             int b=rgb & 255;
 
             AxisAlignedBB box = mc.world.getBlockState(render).getSelectedBoundingBox(mc.world, render).offset(-mc.getRenderManager().viewerPosX, -mc.getRenderManager().viewerPosY, -mc.getRenderManager().viewerPosZ);
-            RenderUtil.prepare();
-            RenderGlobal.drawBoundingBox(box.minX, box.minY, box.minZ, box.maxX, box.maxY, box.maxZ, color.getValue().getRed(),  color.getValue().getGreen(),  color.getValue().getBlue(),  color.getValue().getAlpha());
-            RenderGlobal.renderFilledBox(box.minX, box.minY, box.minZ, box.maxX, box.maxY, box.maxZ, color.getValue().getRed(),  color.getValue().getGreen(),  color.getValue().getBlue(),  color.getValue().getAlpha());
-            RenderUtil.release();
+
+            if(gradient.getValue()){
+                RenderUtil.drawGradientFilledBox(box, gColor1.getValue(), gColor2.getValue());
+            }else {
+                RenderUtil.prepare();
+                RenderGlobal.drawBoundingBox(box.minX, box.minY, box.minZ, box.maxX, box.maxY - height.getValue(), box.maxZ, color.getValue().getRed(), color.getValue().getGreen(), color.getValue().getBlue(), color.getValue().getAlpha());
+                RenderGlobal.renderFilledBox(box.minX, box.minY, box.minZ, box.maxX, box.maxY - height.getValue(), box.maxZ, color.getValue().getRed(), color.getValue().getGreen(), color.getValue().getBlue(), color.getValue().getAlpha());
+                RenderUtil.release();
+            }
         }
 
     }

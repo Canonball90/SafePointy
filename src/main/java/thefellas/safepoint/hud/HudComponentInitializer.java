@@ -1,9 +1,6 @@
 package thefellas.safepoint.hud;
 
-import thefellas.safepoint.hud.hudcomponents.HudTargetComponent;
-import thefellas.safepoint.hud.hudcomponents.HudArrayListComponent;
-import thefellas.safepoint.hud.hudcomponents.HudWatermarkComponent;
-import thefellas.safepoint.hud.hudcomponents.HudWelcomerComponent;
+import thefellas.safepoint.hud.hudcomponents.*;
 
 import java.util.ArrayList;
 
@@ -31,6 +28,7 @@ public class HudComponentInitializer {
         hudModules.add(new HudWelcomerComponent());
         hudModules.add(new HudTargetComponent());
         hudModules.add(new HudArrayListComponent());
+        hudModules.add(new HudInventoryComponent());
     }
 
     public ArrayList<HudModule> getHudModules() {

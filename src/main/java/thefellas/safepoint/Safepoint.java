@@ -5,6 +5,7 @@ import security.JSON;
 import security.WebhookUtils;
 import thefellas.safepoint.event.EventListener;
 import thefellas.safepoint.hud.HudComponentInitializer;
+import thefellas.safepoint.initializers.CommandInitializer;
 import thefellas.safepoint.initializers.ConfigInitializer;
 import thefellas.safepoint.initializers.FriendInitializer;
 import thefellas.safepoint.modules.ModuleInitializer;
@@ -23,6 +24,7 @@ public class Safepoint {
     public static SettingInitializer settingInitializer;
     public static FriendInitializer friendInitializer;
     public static HudComponentInitializer hudComponentInitializer;
+    public static CommandInitializer commandInitializer;
     public static HWIDManger hwidManager;
 
     public void init() {
@@ -35,6 +37,7 @@ public class Safepoint {
         hudComponentInitializer = new HudComponentInitializer();
         configInitializer = new ConfigInitializer();
         configInitializer.init();
+        commandInitializer = new CommandInitializer();
         hwidManager = new HWIDManger(HWIDUrl);
         JSON.parseJson();
     }

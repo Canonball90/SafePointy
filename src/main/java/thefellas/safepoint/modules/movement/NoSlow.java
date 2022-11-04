@@ -10,11 +10,12 @@ import thefellas.safepoint.modules.ModuleInfo;
 public class NoSlow extends Module {
 
     @SubscribeEvent
-    public void onInput(InputUpdateEvent event) {
-        if(nullCheck()) return;
-        if (mc.player.isHandActive() && !mc.player.isRiding()) {
-            event.getMovementInput().moveStrafe *= 5;
-            event.getMovementInput().moveForward *= 5;
+    public void onMove(InputUpdateEvent event) {
+        if(nullCheck())return;
+        if (mc.player.isHandActive() && !mc.player.isRiding())
+        {
+            mc.player.movementInput.moveForward /= 0.2F;
+            mc.player.movementInput.moveStrafe /= 0.2F;
         }
     }
 

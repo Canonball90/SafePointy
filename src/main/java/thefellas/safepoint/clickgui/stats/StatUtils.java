@@ -2,6 +2,7 @@ package thefellas.safepoint.clickgui.stats;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
+import net.minecraft.stats.StatList;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
@@ -18,7 +19,10 @@ public class StatUtils {
     }
 
     public static int getPlayerDeaths() {
-        return Minecraft.getMinecraft().player.getStatFileWriter().readStat(net.minecraft.stats.StatList.DEATHS);
+        if(Minecraft.getMinecraft().player.isDead){
+            Minecraft.getMinecraft().player.getStatFileWriter().increaseStat(Minecraft.getMinecraft().player, StatList.DEATHS, 1);
+        }
+        return Minecraft.getMinecraft().player.getStatFileWriter().readStat(StatList.DEATHS);
     }
 
     public static double getPlayerKD() {

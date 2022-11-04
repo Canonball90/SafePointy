@@ -17,7 +17,7 @@ import java.util.Arrays;
 @ModuleInfo(name = "Offhand", description = "Automatically switches to a better item in your offhand", category = Module.Category.Combat)
 public class Offhand extends Module {
     IntegerSetting health = new IntegerSetting("Health", 10, 1, 20, this);
-    EnumSetting mode = new EnumSetting("Mode", "Crystal", Arrays.asList("Crystal", "Totem", "Gap"), this);
+    EnumSetting mode = new EnumSetting("Mode", "Crystal", Arrays.asList("Crystal", "Totem", "Gap", "Bed"), this);
 
 
     NonNullList<ItemStack> inv;
@@ -89,6 +89,21 @@ public class Offhand extends Module {
                 for (InvID = 0; InvID < inv.size(); InvID++) {
                     if (inv.get(InvID) != ItemStack.EMPTY) {
                         if (inv.get(InvID).getItem() == Items.END_CRYSTAL) {
+                            replaceOffHand(InvID);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        //SWITCH TO BED
+        else if (mc.player.getHealth() > health.getValue() && mode.getValue().equalsIgnoreCase("Bed") ) {
+            if (mc.player.getHeldItemOffhand().getItem() != Items.BED){
+                //LoggerUtil.sendMessage("Putting Totem In Offhand!");
+                inv = mc.player.inventory.mainInventory;
+                for (InvID = 0; InvID < inv.size(); InvID++) {
+                    if (inv.get(InvID) != ItemStack.EMPTY) {
+                        if (inv.get(InvID).getItem() == Items.BED) {
                             replaceOffHand(InvID);
                             break;
                         }
