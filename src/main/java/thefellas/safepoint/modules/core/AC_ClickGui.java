@@ -16,7 +16,7 @@ public class AC_ClickGui extends Module {
     public ColorSetting color = new ColorSetting("Color", new Color(255, 0, 0, 255), this);
     public IntegerSetting integerSetting = new IntegerSetting("I", 100, 0, 500, this);
     public IntegerSetting width = new IntegerSetting("Width", 130, 90, 200, this);
-    public BooleanSetting gradient = new BooleanSetting("Gradient", false, this);
+    public BooleanSetting Sta = new BooleanSetting("Staic", false, this);
     public ParentSetting backParent = new ParentSetting("BackGround", false, this);
     public BooleanSetting background = new BooleanSetting("Background", true, this).setParent(backParent);
     public BooleanSetting particles = new BooleanSetting("Particles", true, this, v -> background.getValue()).setParent(backParent);

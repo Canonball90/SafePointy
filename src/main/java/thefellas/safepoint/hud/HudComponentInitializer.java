@@ -29,6 +29,9 @@ public class HudComponentInitializer {
         hudModules.add(new HudTargetComponent());
         hudModules.add(new HudArrayListComponent());
         hudModules.add(new HudInventoryComponent());
+        hudModules.add(new HudFpsComponent());
+        hudModules.add(new HudArmorComponent());
+        hudModules.add(new HudCompassComponent());
     }
 
     public ArrayList<HudModule> getHudModules() {

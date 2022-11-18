@@ -44,6 +44,7 @@ import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+import thefellas.safepoint.utils.BlockUtil;
 import thefellas.safepoint.utils.RenderUtil;
 import thefellas.safepoint.utils.TimerUtil;
 import thefellas.safepoint.utils.WorldUtil;
@@ -65,18 +66,15 @@ public class AutoCrystalNew extends Module {
     BooleanSetting place = new BooleanSetting("Place", true, this).setParent(Pplace);
     BooleanSetting predict = new BooleanSetting("Predict", true, this).setParent(Pplace);
     IntegerSetting faceplace = new IntegerSetting("FacePlace",  8, 0, 36, this).setParent(Pplace);
-
     //break
     ParentSetting Bbreak = new ParentSetting("Break", false, this);
     IntegerSetting hitDelay = new IntegerSetting("HitDelay", 0, -6, 600, this).setParent(Bbreak);
     BooleanSetting ak47 = new BooleanSetting("Ak47", true, this).setParent(Bbreak);
-
     //render
     ParentSetting rendor = new ParentSetting("Render", false, this);
     ColorSetting color = new ColorSetting("Color", new Color(255,0,0,100), this).setParent(rendor);
     BooleanSetting slab = new BooleanSetting("Slab", false, this).setParent(rendor);
     DoubleSetting height = new DoubleSetting("Height", 0.8, -1.5, 3, this, v -> slab.getValue()).setParent(rendor);
-
     //other
     ParentSetting other = new ParentSetting("Other", false, this);
     EnumSetting logic = new EnumSetting("Logic", "BREAKPLACE",  Arrays.asList("BREAKPLACE", "PLACEBREAK"), this).setParent(other);
@@ -108,6 +106,7 @@ public class AutoCrystalNew extends Module {
                                 Minecraft.getMinecraft().player.posZ),
                         new Vec3d((double) pos.getX() + 0.5, (double) pos.getY() - 0.5, (double) pos.getZ() + 0.5));
         EnumFacing facing = result == null || result.sideHit == null ? EnumFacing.UP : result.sideHit;
+        BlockUtil.rotatePacket(pos.getX() + 0.5, pos.getY() - 0.5, pos.getZ() + 0.5);
         Minecraft.getMinecraft().player.connection
                 .sendPacket(new CPacketPlayerTryUseItemOnBlock(pos, facing, hand, 0.0f, 0.0f, 0.0f));
     }

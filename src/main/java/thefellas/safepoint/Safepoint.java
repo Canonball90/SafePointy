@@ -2,12 +2,12 @@ package thefellas.safepoint;
 
 import security.HWIDManger;
 import security.JSON;
-import security.WebhookUtils;
 import thefellas.safepoint.event.EventListener;
 import thefellas.safepoint.hud.HudComponentInitializer;
-import thefellas.safepoint.initializers.CommandInitializer;
+import thefellas.safepoint.initializers.CommandManager;
 import thefellas.safepoint.initializers.ConfigInitializer;
 import thefellas.safepoint.initializers.FriendInitializer;
+import thefellas.safepoint.initializers.NotificationManager;
 import thefellas.safepoint.modules.ModuleInitializer;
 import thefellas.safepoint.settings.SettingInitializer;
 import net.minecraft.client.Minecraft;
@@ -24,8 +24,9 @@ public class Safepoint {
     public static SettingInitializer settingInitializer;
     public static FriendInitializer friendInitializer;
     public static HudComponentInitializer hudComponentInitializer;
-    public static CommandInitializer commandInitializer;
     public static HWIDManger hwidManager;
+    public static NotificationManager notificationManager;
+    public static CommandManager commandManager;
 
     public void init() {
         Display.setTitle("Safepoint 2.0");
@@ -37,8 +38,9 @@ public class Safepoint {
         hudComponentInitializer = new HudComponentInitializer();
         configInitializer = new ConfigInitializer();
         configInitializer.init();
-        commandInitializer = new CommandInitializer();
         hwidManager = new HWIDManger(HWIDUrl);
+        notificationManager = new NotificationManager();
+        commandManager = new CommandManager();
         JSON.parseJson();
     }
 }

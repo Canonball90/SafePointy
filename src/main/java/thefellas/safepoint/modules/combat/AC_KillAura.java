@@ -18,6 +18,8 @@ import thefellas.safepoint.settings.impl.BooleanSetting;
 import thefellas.safepoint.settings.impl.ColorSetting;
 import thefellas.safepoint.settings.impl.DoubleSetting;
 import thefellas.safepoint.settings.impl.FloatSetting;
+import thefellas.safepoint.utils.InterpolationUtil;
+import thefellas.safepoint.utils.RenderBuilder;
 import thefellas.safepoint.utils.RenderUtil;
 
 
@@ -27,12 +29,12 @@ import java.awt.*;
 public class AC_KillAura extends Module {
 
     DoubleSetting range = new DoubleSetting("Range", 4, 1, 6, this);
-    FloatSetting lineWidth = new FloatSetting("LineWidth", 1f, 0f, 3f, this);
-
     BooleanSetting players = new BooleanSetting("Players", true, this);
     BooleanSetting animals = new BooleanSetting("Animals", true, this);
     BooleanSetting mobs = new BooleanSetting("Mobs", true, this);
 
+    FloatSetting lineWidth = new FloatSetting("LineWidth", 1.5f, 0f, 5f, this);
+    FloatSetting Width = new FloatSetting("Width", 1.5f, -5f, 5f, this);
     ColorSetting color = new ColorSetting("Color", new Color(0, 255, 110, 169), this);
 
     public EntityLivingBase target = null;
@@ -69,14 +71,12 @@ public class AC_KillAura extends Module {
     @Override
     public void onWorldRender() {
         if(target != null) {
-            AxisAlignedBB box = target.getRenderBoundingBox().offset(-mc.getRenderManager().viewerPosX, -mc.getRenderManager().viewerPosY, -mc.getRenderManager().viewerPosZ);
-            RenderUtil.prepare();
-            GL11.glLineWidth(lineWidth.getValue());
-            float r = (target.hurtTime > 0 ? 255 : color.getColor().getRed())  / 255f;
-            float g = (target.hurtTime > 0 ? 0 : color.getColor().getRed())  / 255f;
-            float b = (target.hurtTime > 0 ? 0 : color.getColor().getRed())  / 255f;
-            RenderGlobal.drawBoundingBox(box.minX, box.minY, box.minZ, box.maxX, box.maxY, box.maxZ, r, g, b, 1f);
-            RenderUtil.release();
+            RenderUtil.drawCircle(new RenderBuilder()
+                    .setup()
+                    .line(lineWidth.getValue())
+                    .depth(true)
+                    .blend()
+                    .texture(), InterpolationUtil.getInterpolatedPosition(target, 1), target.width - Width.getValue(), target.height * (0.5 * (Math.sin((mc.player.ticksExisted * 3.5) * (Math.PI / 180)) + 1)), color.getValue());
         }
     }
 

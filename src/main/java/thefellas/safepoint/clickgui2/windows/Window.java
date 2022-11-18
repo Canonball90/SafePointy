@@ -77,9 +77,9 @@ public class Window {
                 modules.add(new ModuleWindow(module.getName(), x, y += height, width, height, AC_ClickGui.getInstance().backgroundColor.getColor(), AC_ClickGui.getInstance().color.getColor(), module));
                 y += openedHeight;
             }
-            RenderUtil.drawOutlineRect(x, this.y + height, x + width, y + height, AC_ClickGui.getInstance().color.getColor(), 1.5f);
+            RenderUtil.drawOutlineRect(x, this.y + height, x + width, y + height, AC_ClickGui.getInstance().color.getColor(), 1f);
         }
-        RenderUtil.drawOutlineRect(x, this.y - 3, x + width, this.y + height, AC_ClickGui.getInstance().color.getColor(), 1.5f);
+        RenderUtil.drawOutlineRect(x, this.y - 3, x + width, this.y + height, AC_ClickGui.getInstance().color.getColor(), 1f);
         if (isOpened)
             modules.forEach(modules -> modules.drawScreen(mouseX, mouseY, partialTicks));
     }

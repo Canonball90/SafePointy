@@ -1,24 +1,23 @@
 package thefellas.safepoint.hud.hudcomponents;
 
+import net.minecraft.client.Minecraft;
 import thefellas.safepoint.Safepoint;
-import thefellas.safepoint.SafepointMod;
 import thefellas.safepoint.hud.HudModule;
 import thefellas.safepoint.modules.core.AC_ClickGui;
 import thefellas.safepoint.utils.RenderUtil;
-import thefellas.safepoint.utils.TimerUtil;
 
 import java.awt.*;
 
-public class HudWatermarkComponent extends HudModule {
+public class HudPvpInfoComponent extends HudModule {
+
     int dragX;
     int dragY;
     boolean isDragging;
-    TimerUtil timer = new TimerUtil();
 
-    public HudWatermarkComponent() {
-        super("Watermark");
+    public HudPvpInfoComponent() {
+        super("PvpInfo");
         renderX = 0;
-        renderY = 0;
+        renderY = 10;
     }
 
     public void dragScreen(int mouseX, int mouseY) {
@@ -42,65 +41,10 @@ public class HudWatermarkComponent extends HudModule {
     }
 
     public void drawText() {
-        String wate = " Safepoint.club | ";
-    if(AC_ClickGui.getInstance().Sta.getValue()) {
-        if (timer.hasTimeElapsed(0, false)) {
-            wate = " S | ";
-        }
-        if (timer.hasTimeElapsed(500, false)) {
-            wate = " Sa | ";
-        }
-        if (timer.hasTimeElapsed(1000, false)) {
-            wate = " Saf | ";
-        }
-        if (timer.hasTimeElapsed(1500, false)) {
-            wate = " Safe | ";
-        }
-        if (timer.hasTimeElapsed(2000, false)) {
-            wate = " Safep | ";
-        }
-        if (timer.hasTimeElapsed(2500, false)) {
-            wate = " Safepo | ";
-        }
-        if (timer.hasTimeElapsed(3000, false)) {
-            wate = " Safepoi | ";
-        }
-        if (timer.hasTimeElapsed(3500, false)) {
-            wate = " Safepoin | ";
-        }
-        if (timer.hasTimeElapsed(4000, false)) {
-            wate = " Safepoint | ";
-        }
-        if (timer.hasTimeElapsed(5000, false)) {
-            wate = " Safepoint. | ";
-        }
-        if (timer.hasTimeElapsed(5500, false)) {
-            wate = " Safepoint.c | ";
-        }
-        if (timer.hasTimeElapsed(6000, false)) {
-            wate = " Safepoint.cl | ";
-        }
-        if (timer.hasTimeElapsed(6500, false)) {
-            wate = " Safepoint.clu | ";
-        }
-        if (timer.hasTimeElapsed(7000, false)) {
-            wate = " Safepoint.club | ";
-            timer.reset();
-        }
+     Safepoint.mc.fontRenderer.drawStringWithShadow("CA: ", renderX, renderY, -1);
     }
-        else
-        {
-            timer.reset();
-        }
-        String water = wate + " v" + SafepointMod.VERSION;
-
-        Safepoint.mc.fontRenderer.drawStringWithShadow(water, renderX, renderY, -1);
-    }
-
-
-
     public boolean isInsideDragField(int mouseX, int mouseY) {
-        return (mouseX > renderX && mouseX < renderX + Safepoint.mc.fontRenderer.getStringWidth("SafePoint.club")) && (mouseY > renderY && mouseY < renderY + Safepoint.mc.fontRenderer.FONT_HEIGHT);
+        return (mouseX > renderX && mouseX < renderX + Safepoint.mc.fontRenderer.getStringWidth("Chat Notifications")) && (mouseY > renderY && mouseY < renderY + Safepoint.mc.fontRenderer.FONT_HEIGHT*Safepoint.moduleInitializer.getModuleList().size());
     }
 
     @Override
@@ -119,4 +63,5 @@ public class HudWatermarkComponent extends HudModule {
         if (releaseButton == 0)
             isDragging = false;
     }
+
 }

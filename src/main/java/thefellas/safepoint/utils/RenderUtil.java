@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.culling.Frustum;
 import net.minecraft.client.renderer.culling.ICamera;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
@@ -20,8 +21,7 @@ import javax.vecmath.Vector4f;
 import java.awt.*;
 import java.util.Objects;
 
-import static org.lwjgl.opengl.GL11.glEnable;
-import static org.lwjgl.opengl.GL11.glHint;
+import static org.lwjgl.opengl.GL11.*;
 
 public class RenderUtil {
     public static ICamera camera = new Frustum();
@@ -29,6 +29,8 @@ public class RenderUtil {
     static Vec3d camPos = new Vec3d(0.0, 0.0, 0.0);
     private final static Matrix4f modelMatrix = new Matrix4f();
     private final static Matrix4f projectionMatrix = new Matrix4f();
+    public static Tessellator tessellator = Tessellator.getInstance();
+    public static BufferBuilder bufferBuilder = tessellator.getBuffer();
 
     public static void prepare() {
         GlStateManager.pushMatrix();
@@ -139,6 +141,27 @@ public class RenderUtil {
         GlStateManager.enableTexture2D();
         GlStateManager.disableBlend();
         GlStateManager.popMatrix();
+    }
+
+    public static void glBillboardDistanceScaled(float x, float y, float z, EntityPlayer player, float scale) {
+        glBillboard(x, y, z);
+        int distance = (int) player.getDistance(x, y, z);
+        float scaleDistance = distance / 2F / (2 + (2 - scale));
+
+        if (scaleDistance < 1)
+            scaleDistance = 1;
+
+        GlStateManager.scale(scaleDistance, scaleDistance, scaleDistance);
+    }
+
+    public static void glBillboard(float x, float y, float z) {
+        float scale = 0.02666667f;
+
+        GlStateManager.translate(x - Minecraft.getMinecraft().getRenderManager().viewerPosX, y - Minecraft.getMinecraft().getRenderManager().viewerPosY, z - Minecraft.getMinecraft().getRenderManager().viewerPosZ);
+        GlStateManager.glNormal3f(0, 1, 0);
+        GlStateManager.rotate(-Minecraft.getMinecraft().player.rotationYaw, 0, 1, 0);
+        GlStateManager.rotate(Minecraft.getMinecraft().player.rotationPitch, (Minecraft.getMinecraft().gameSettings.thirdPersonView == 2) ? -1 : 1, 0, 0);
+        GlStateManager.scale(-scale, -scale, scale);
     }
 
     public static void drawOutlineRect(double left, double top, double right, double bottom, Color color, float lineWidth) {
@@ -384,4 +407,34 @@ public class RenderUtil {
         GlStateManager.popMatrix();
     }
 
+    public static void drawCircle(RenderBuilder renderBuilder, Vec3d vec3d, double radius, double height, Color color) {
+        renderCircle(bufferBuilder, vec3d, radius, height, color);
+        renderBuilder.build();
+    }
+
+    public static void renderCircle(BufferBuilder bufferBuilder, Vec3d vec3d, double radius, double height, Color color) {
+        GlStateManager.disableCull();
+        GlStateManager.disableAlpha();
+        GlStateManager.shadeModel(GL_SMOOTH);
+        bufferBuilder.begin(GL_LINE_STRIP, DefaultVertexFormats.POSITION_COLOR);
+
+        for (int i = 0; i < 361; i++) {
+            bufferBuilder.pos((vec3d.x) + Math.sin(Math.toRadians(i)) * radius - Minecraft.getMinecraft().getRenderManager().viewerPosX, vec3d.y + height - Minecraft.getMinecraft().getRenderManager().viewerPosY, ((vec3d.z) + Math.cos(Math.toRadians(i)) * radius) - Minecraft.getMinecraft().getRenderManager().viewerPosZ).color((float) color.getRed() / 255, (float) color.getGreen() / 255, (float) color.getBlue() / 255, 1).endVertex();
+        }
+
+        tessellator.draw();
+
+        GlStateManager.enableCull();
+        GlStateManager.enableAlpha();
+        GlStateManager.shadeModel(GL_FLAT);
+    }
+
+    public static void drawNametag(BlockPos blockPos, float height, String text) {
+        GlStateManager.pushMatrix();
+        glBillboardDistanceScaled(blockPos.getX() + 0.5f, blockPos.getY() + height, blockPos.getZ() + 0.5f, Minecraft.getMinecraft().player, 1);
+        GlStateManager.disableDepth();
+        GlStateManager.translate(-(Minecraft.getMinecraft().fontRenderer.getStringWidth(text) / 2.0), 0.0, 0.0);
+        Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(text, 0, 0, -1);
+        GlStateManager.popMatrix();
+    }
 }

@@ -184,6 +184,7 @@ public class ColorButton extends Button {
         int cursorY = (int) ((pickerY + pickerHeight) - color[2] * pickerHeight);
 
         Gui.drawRect(cursorX - 2, cursorY - 2, cursorX + 2, cursorY + 2, -1);
+        RenderUtil.drawOutlineRect(cursorX - 2, cursorY - 2, cursorX + 2, cursorY + 2, new Color(0,0,0), 1f);
 
         finalColor = getColor(new Color(Color.HSBtoRGB(color[0], color[1], color[2])), color[3]);
 

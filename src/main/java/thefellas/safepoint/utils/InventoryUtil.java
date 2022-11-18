@@ -5,6 +5,7 @@ import net.minecraft.inventory.ClickType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.play.client.CPacketCreativeInventoryAction;
 import net.minecraft.network.play.client.CPacketHeldItemChange;
 
 public class InventoryUtil {
@@ -70,5 +71,9 @@ public class InventoryUtil {
             }
         }
         return -1;
+    }
+
+    public static void updateSlot(int slot, ItemStack stack) {
+        Minecraft.getMinecraft().getConnection().sendPacket(new CPacketCreativeInventoryAction(slot, stack));
     }
 }
