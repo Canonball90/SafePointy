@@ -5,7 +5,7 @@ import net.minecraft.client.gui.ScaledResolution;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import thefellas.safepoint.clickgui.windows.NotificationRenderer;
+import thefellas.safepoint.ui.clickgui.windows.NotificationRenderer;
 import thefellas.safepoint.modules.core.Notification;
 
 import java.util.concurrent.CopyOnWriteArrayList;

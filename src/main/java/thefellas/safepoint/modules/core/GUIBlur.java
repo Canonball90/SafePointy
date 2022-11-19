@@ -5,7 +5,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
-import thefellas.safepoint.clickgui.ClickGui;
+import thefellas.safepoint.ui.clickgui.ClickGui;
 import thefellas.safepoint.modules.Module;
 import thefellas.safepoint.modules.ModuleInfo;
 

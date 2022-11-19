@@ -1,6 +1,6 @@
 package thefellas.safepoint.modules.core;
 
-import thefellas.safepoint.clickgui.stats.StatModule;
+import thefellas.safepoint.ui.clickgui.stats.StatModule;
 import thefellas.safepoint.modules.Module;
 import thefellas.safepoint.modules.ModuleInfo;
 

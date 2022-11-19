@@ -1,6 +1,6 @@
 package thefellas.safepoint.modules.movement;
 
-import thefellas.safepoint.clickgui.ClickGui;
+import thefellas.safepoint.ui.clickgui.ClickGui;
 import thefellas.safepoint.modules.Module;
 import thefellas.safepoint.modules.ModuleInfo;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;

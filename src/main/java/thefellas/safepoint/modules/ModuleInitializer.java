@@ -1,7 +1,7 @@
 package thefellas.safepoint.modules;
 
 import thefellas.safepoint.Safepoint;
-import thefellas.safepoint.clickgui.ClickGui;
+import thefellas.safepoint.ui.clickgui.ClickGui;
 import org.lwjgl.input.Keyboard;
 
 import java.lang.reflect.Constructor;

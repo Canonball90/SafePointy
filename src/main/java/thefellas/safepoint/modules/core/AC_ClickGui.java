@@ -5,6 +5,7 @@ import thefellas.safepoint.modules.Module;
 import thefellas.safepoint.modules.ModuleInfo;
 import thefellas.safepoint.settings.impl.*;
 import org.lwjgl.input.Keyboard;
+import thefellas.safepoint.ui.clickgui2.ClickGui;
 
 import java.awt.*;
 import java.util.Arrays;
@@ -34,9 +35,9 @@ public class AC_ClickGui extends Module {
     @Override
     public void onEnable() {
         if(mode.getValue().equalsIgnoreCase("Old")) {
-            mc.displayGuiScreen(thefellas.safepoint.clickgui.ClickGui.getInstance());
+            mc.displayGuiScreen(thefellas.safepoint.ui.clickgui.ClickGui.getInstance());
         } else {
-            mc.displayGuiScreen(thefellas.safepoint.clickgui2.ClickGui.getInstance());
+            mc.displayGuiScreen(ClickGui.getInstance());
         }
     }
 
@@ -47,7 +48,7 @@ public class AC_ClickGui extends Module {
 
     @Override
     public void onTick() {
-        if (!(mc.currentScreen instanceof thefellas.safepoint.clickgui.ClickGui) && isEnabled())
+        if (!(mc.currentScreen instanceof thefellas.safepoint.ui.clickgui.ClickGui) && isEnabled())
             disableModule();
     }
 

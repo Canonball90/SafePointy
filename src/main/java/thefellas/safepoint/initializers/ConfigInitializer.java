@@ -1,7 +1,7 @@
 package thefellas.safepoint.initializers;
 
 import thefellas.safepoint.Safepoint;
-import thefellas.safepoint.hud.HudModule;
+import thefellas.safepoint.ui.hud.HudModule;
 import thefellas.safepoint.modules.Module;
 import thefellas.safepoint.settings.Setting;
 import thefellas.safepoint.settings.impl.*;

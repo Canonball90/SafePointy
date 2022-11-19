@@ -1,9 +1,11 @@
 package thefellas.safepoint;
 
+import net.minecraftforge.common.MinecraftForge;
 import security.HWIDManger;
 import security.JSON;
 import thefellas.safepoint.event.EventListener;
-import thefellas.safepoint.hud.HudComponentInitializer;
+import thefellas.safepoint.event.events.onGuiOpenEvent;
+import thefellas.safepoint.ui.hud.HudComponentInitializer;
 import thefellas.safepoint.initializers.CommandManager;
 import thefellas.safepoint.initializers.ConfigInitializer;
 import thefellas.safepoint.initializers.FriendInitializer;
@@ -12,6 +14,7 @@ import thefellas.safepoint.modules.ModuleInitializer;
 import thefellas.safepoint.settings.SettingInitializer;
 import net.minecraft.client.Minecraft;
 import org.lwjgl.opengl.Display;
+import thefellas.safepoint.utils.Shaders.Shaders;
 
 public class Safepoint {
     public static Minecraft mc = Minecraft.getMinecraft();
@@ -27,6 +30,7 @@ public class Safepoint {
     public static HWIDManger hwidManager;
     public static NotificationManager notificationManager;
     public static CommandManager commandManager;
+    public static Shaders shaders;
 
     public void init() {
         Display.setTitle("Safepoint 2.0");
@@ -41,6 +45,8 @@ public class Safepoint {
         hwidManager = new HWIDManger(HWIDUrl);
         notificationManager = new NotificationManager();
         commandManager = new CommandManager();
+        shaders = new Shaders( );
+        MinecraftForge.EVENT_BUS.register(new onGuiOpenEvent());
         JSON.parseJson();
     }
 }

@@ -1,0 +1,14 @@
+package thefellas.safepoint.ui.hud.hudcomponents;
+
+import thefellas.safepoint.ui.hud.HudModule;
+
+public class HudCompassComponent extends HudModule {
+
+    public HudCompassComponent() {
+        super("Compass");
+    }
+
+
+    public void render() {
+    }
+}

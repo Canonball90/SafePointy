@@ -74,7 +74,12 @@ public class AutoCrystalNew extends Module {
     ParentSetting rendor = new ParentSetting("Render", false, this);
     ColorSetting color = new ColorSetting("Color", new Color(255,0,0,100), this).setParent(rendor);
     BooleanSetting slab = new BooleanSetting("Slab", false, this).setParent(rendor);
-    DoubleSetting height = new DoubleSetting("Height", 0.8, -1.5, 3, this, v -> slab.getValue()).setParent(rendor);
+    FloatSetting height = new FloatSetting("Height", 0.8f, -1.5f, 3, this, v -> slab.getValue()).setParent(rendor);
+    BooleanSetting pulse = new BooleanSetting("Pulse", true, this).setParent(rendor);
+    FloatSetting pulseMax = new FloatSetting("Pulse Max", 1f, 0.0f, 1.5f, this, v -> pulse.getValue()).setParent(rendor);
+    FloatSetting pulseMin = new FloatSetting("Pulse Min", 0.5f, 0.0f, 1.5f, this, v -> pulse.getValue()).setParent(rendor);
+    FloatSetting pulseSpeed = new FloatSetting("Pulse Speed", 4.0f, 0.0f, 5.0f, this, v -> pulse.getValue()).setParent(rendor);
+    FloatSetting rollingWidth = new FloatSetting("Pulse W", 8.0f, 0.0f, 20.0f, this, v -> pulse.getValue()).setParent(rendor);
     //other
     ParentSetting other = new ParentSetting("Other", false, this);
     EnumSetting logic = new EnumSetting("Logic", "BREAKPLACE",  Arrays.asList("BREAKPLACE", "PLACEBREAK"), this).setParent(other);
@@ -189,12 +194,10 @@ public class AutoCrystalNew extends Module {
             }
 
             if (breakTimer.passedMs(hitDelay.getValue())) {
-//            	if (predict.getBooleanValue()) {
-//                  final CPacketUseEntity attackPacket = new CPacketUseEntity();
-//                  attackPacket.entityId = crystal;
-//                  attackPacket.action = CPacketUseEntity.Action.ATTACK;
-//                  mc.player.connection.sendPacket((Packet)attackPacket);
-//            	}
+            	if (predict.getValue()) {
+                  final CPacketUseEntity attackPacket = new CPacketUseEntity();
+                  mc.player.connection.sendPacket((Packet)attackPacket);
+           	    }
                 mc.playerController.attackEntity(mc.player, crystal);
                 mc.player.swingArm(EnumHand.MAIN_HAND);
                 breakTimer.reset();
@@ -266,13 +269,7 @@ public class AutoCrystalNew extends Module {
     @SubscribeEvent
     public void onWorldRender(RenderWorldLastEvent event) {
         if (this.render != null && target2 != null) {
-
-            AxisAlignedBB box = mc.world.getBlockState(render).getSelectedBoundingBox(mc.world, render).offset(-mc.getRenderManager().viewerPosX, -mc.getRenderManager().viewerPosY, -mc.getRenderManager().viewerPosZ);
-
-            RenderUtil.prepare();
-            RenderGlobal.drawBoundingBox(box.minX, box.minY, box.minZ, box.maxX, box.maxY - height.getValue(), box.maxZ, color.getValue().getRed(), color.getValue().getGreen(), color.getValue().getBlue(), color.getValue().getAlpha());
-            RenderGlobal.renderFilledBox(box.minX, box.minY, box.minZ, box.maxX, box.maxY - height.getValue(), box.maxZ, color.getValue().getRed(), color.getValue().getGreen(), color.getValue().getBlue(), color.getValue().getAlpha());
-            RenderUtil.release();
+            RenderUtil.renderBox(pos, color.getValue(), getRolledHeight(4));
         }
     }
 
@@ -325,5 +322,11 @@ public class AutoCrystalNew extends Module {
         return damage;
     }
 
+    private float getRolledHeight(float offset) {
+        double s = (System.currentTimeMillis() * pulseSpeed.getValue()) + (offset * rollingWidth.getValue() * 100.0f);
+        s %= 300.0;
+        s = (150.0f * Math.sin(((s - 75.0f) * Math.PI) / 150.0f)) + 150.0f;
+        return pulseMax.getValue() + ((float)s * ((pulseMin.getValue() - pulseMax.getValue()) / 300.0f));
+    }
 
 }

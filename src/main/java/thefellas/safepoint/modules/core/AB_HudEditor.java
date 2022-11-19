@@ -1,6 +1,6 @@
 package thefellas.safepoint.modules.core;
 
-import thefellas.safepoint.hud.HudWindow;
+import thefellas.safepoint.ui.hud.HudWindow;
 import thefellas.safepoint.modules.Module;
 import thefellas.safepoint.modules.ModuleInfo;
 
