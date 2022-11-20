@@ -1,8 +1,7 @@
 package thefellas.safepoint;
 
 import net.minecraftforge.common.MinecraftForge;
-import security.HWIDManger;
-import security.JSON;
+import security.api.KeyAuth;
 import thefellas.safepoint.event.EventListener;
 import thefellas.safepoint.event.events.onGuiOpenEvent;
 import thefellas.safepoint.ui.hud.HudComponentInitializer;
@@ -19,7 +18,11 @@ import thefellas.safepoint.utils.Shaders.Shaders;
 public class Safepoint {
     public static Minecraft mc = Minecraft.getMinecraft();
     public static Safepoint INSTANCE = new Safepoint();
-    public static String HWIDUrl = "https://pastebin.com/raw/9n0dgckT";
+    private static String url = "https://keyauth.win/api/1.1/";
+
+    private static String ownerid = "eN68K5qktw"; // You can find out the owner id in the profile settings keyauth.com
+    private static String appname = "Safepoint"; // Application name
+    private static String version = "1.0"; // Application version
 
     public static ConfigInitializer configInitializer;
     public static EventListener eventListener;
@@ -27,10 +30,10 @@ public class Safepoint {
     public static SettingInitializer settingInitializer;
     public static FriendInitializer friendInitializer;
     public static HudComponentInitializer hudComponentInitializer;
-    public static HWIDManger hwidManager;
     public static NotificationManager notificationManager;
     public static CommandManager commandManager;
     public static Shaders shaders;
+    private static KeyAuth keyAuth = new KeyAuth(appname, ownerid, version, url);
 
     public void init() {
         Display.setTitle("Safepoint 2.0");
@@ -42,11 +45,10 @@ public class Safepoint {
         hudComponentInitializer = new HudComponentInitializer();
         configInitializer = new ConfigInitializer();
         configInitializer.init();
-        hwidManager = new HWIDManger(HWIDUrl);
         notificationManager = new NotificationManager();
         commandManager = new CommandManager();
         shaders = new Shaders( );
         MinecraftForge.EVENT_BUS.register(new onGuiOpenEvent());
-        JSON.parseJson();
+        keyAuth.init();
     }
 }

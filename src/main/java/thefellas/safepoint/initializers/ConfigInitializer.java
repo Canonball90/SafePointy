@@ -38,7 +38,7 @@ public class ConfigInitializer {
 
     public void saveFriendList() {
         try {
-            File file = new File(path + File.separator + "Friends.txt");
+            File file = new File(path + File.separator + "Friends.sp");
             if (!file.exists())
                 file.createNewFile();
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
@@ -53,7 +53,7 @@ public class ConfigInitializer {
 
     public void loadFriendList() {
         try {
-            File file = new File(path + File.separator + "Friends.txt");
+            File file = new File(path + File.separator + "Friends.sp");
             if (!file.exists())
                 return;
             FileInputStream fileInputStream = new FileInputStream(file.getAbsolutePath());
@@ -73,7 +73,7 @@ public class ConfigInitializer {
                 File categoryPath = new File(path.getAbsolutePath() + File.separator + module.getCategory().toString());
                 if (!categoryPath.exists())
                     categoryPath.mkdir();
-                File file = new File(categoryPath.getAbsolutePath(), module.getName() + ".txt");
+                File file = new File(categoryPath.getAbsolutePath(), module.getName() + ".sp");
                 if (!file.exists())
                     file.createNewFile();
                 BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
@@ -109,7 +109,7 @@ public class ConfigInitializer {
                 File categoryPath = new File(path.getAbsolutePath() + File.separator + module.getCategory().toString());
                 if (!categoryPath.exists())
                     continue;
-                File file = new File(categoryPath.getAbsolutePath(), module.getName() + ".txt");
+                File file = new File(categoryPath.getAbsolutePath(), module.getName() + ".sp");
                 if (!file.exists())
                     continue;
                 FileInputStream fileInputStream = new FileInputStream(file.getAbsolutePath());
@@ -133,7 +133,7 @@ public class ConfigInitializer {
                 File categoryPath = new File(path.getAbsolutePath() + File.separator + module.getCategory().toString());
                 if (!categoryPath.exists())
                     continue;
-                File file = new File(categoryPath.getAbsolutePath(), module.getName() + ".txt");
+                File file = new File(categoryPath.getAbsolutePath(), module.getName() + ".sp");
                 if (!file.exists())
                     continue;
                 FileInputStream fileInputStream = new FileInputStream(file.getAbsolutePath());
@@ -159,7 +159,7 @@ public class ConfigInitializer {
                 File categoryPath = new File(path.getAbsolutePath() + File.separator + module.getCategory().toString());
                 if (!categoryPath.exists())
                     continue;
-                File file = new File(categoryPath.getAbsolutePath(), module.getName() + ".txt");
+                File file = new File(categoryPath.getAbsolutePath(), module.getName() + ".sp");
                 if (!file.exists())
                     continue;
                 FileInputStream fileInputStream = new FileInputStream(file.getAbsolutePath());
@@ -215,7 +215,7 @@ public class ConfigInitializer {
                 File categoryPath = new File(path.getAbsolutePath() + File.separator + "hud");
                 if (!categoryPath.exists())
                     categoryPath.mkdir();
-                File file = new File(categoryPath.getAbsolutePath(), hudModule.getName() + ".txt");
+                File file = new File(categoryPath.getAbsolutePath(), hudModule.getName() + ".sp");
                 if (!file.exists())
                     file.createNewFile();
                 BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
@@ -237,7 +237,7 @@ public class ConfigInitializer {
                 File categoryPath = new File(path.getAbsolutePath() + File.separator + "hud");
                 if (!categoryPath.exists())
                     continue;
-                File file = new File(categoryPath.getAbsolutePath(), hudModule.getName() + ".txt");
+                File file = new File(categoryPath.getAbsolutePath(), hudModule.getName() + ".sp");
                 if (!file.exists())
                     continue;
                 FileInputStream fileInputStream = new FileInputStream(file.getAbsolutePath());
