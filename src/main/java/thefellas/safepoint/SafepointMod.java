@@ -34,7 +34,6 @@ public class SafepointMod {
 
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
-        //Safepoint.hwidManager.processVerification();
         proxy.postInit(event);
     }
 }

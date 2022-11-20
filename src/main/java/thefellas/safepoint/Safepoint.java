@@ -2,6 +2,7 @@ package thefellas.safepoint;
 
 import net.minecraftforge.common.MinecraftForge;
 import security.api.KeyAuth;
+import security.util.HWID;
 import thefellas.safepoint.event.EventListener;
 import thefellas.safepoint.event.events.onGuiOpenEvent;
 import thefellas.safepoint.ui.hud.HudComponentInitializer;
@@ -34,6 +35,7 @@ public class Safepoint {
     public static CommandManager commandManager;
     public static Shaders shaders;
     private static KeyAuth keyAuth = new KeyAuth(appname, ownerid, version, url);
+    private static HWID hwid;
 
     public void init() {
         Display.setTitle("Safepoint 2.0");
