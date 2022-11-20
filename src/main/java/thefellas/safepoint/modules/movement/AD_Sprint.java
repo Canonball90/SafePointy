@@ -13,6 +13,7 @@ public class AD_Sprint extends Module {
 
     @SubscribeEvent
     public void onUpdate(TickEvent.PlayerTickEvent e) {
+        if(nullCheck()) return;
         if (rage.getValue()) {
             if (!AD_Sprint.mc.gameSettings.keyBindForward.isKeyDown() && !AD_Sprint.mc.gameSettings.keyBindBack.isKeyDown() && !AD_Sprint.mc.gameSettings.keyBindLeft.isKeyDown() && !AD_Sprint.mc.gameSettings.keyBindRight.isKeyDown() || AD_Sprint.mc.player.isSneaking() || AD_Sprint.mc.player.collidedHorizontally || (float)AD_Sprint.mc.player.getFoodStats().getFoodLevel() <= 6.0f);
                 AD_Sprint.mc.player.setSprinting(true);

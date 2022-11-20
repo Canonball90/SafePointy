@@ -39,12 +39,16 @@ public class NameTags extends Module {
     BooleanSetting items = new BooleanSetting("Items", true, this);
     BooleanSetting heart = new BooleanSetting("Heart", false, this);
     BooleanSetting enchant = new BooleanSetting("Enchantments", false, this);
+    BooleanSetting healthBar = new BooleanSetting("Health Bar", false, this);
     BooleanSetting background = new BooleanSetting("Background", true, this);
     ColorSetting backGroundColor = new ColorSetting("Background Color", new Color(0, 0, 0, 181), this, v -> background.getValue());
     BooleanSetting outline = new BooleanSetting("Outline", true, this);
     FloatSetting outlineWidth = new FloatSetting("Outline Width", 1.0f, 1.0f, 3.0f, this, v -> outline.getValue());
     ColorSetting outlineColor = new ColorSetting("Outline Color", new Color(255, 0, 0, 255), this, v -> outline.getValue());
     FloatSetting yOffset = new FloatSetting("Y Offset", 0, -10.0F, 10.0F, this);
+    FloatSetting sizel = new FloatSetting("Size", 0, -10.0F, 10.0F, this);
+    IntegerSetting width = new IntegerSetting("Width", 0, -5, 5, this);
+    IntegerSetting height = new IntegerSetting("Height", 0, -5, 5, this);
 
     @SubscribeEvent
     public void onRenderWorld(RenderWorldLastEvent event) {
@@ -59,7 +63,7 @@ public class NameTags extends Module {
             GL11.glNormal3f((float)0.0f, (float)1.0f, (float)0.0f);
             GlStateManager.disableLighting();
             GlStateManager.enableBlend();
-            float size = Math.min(Math.max(1.2f * (NameTags.mc.player.getDistance(e) * 0.15f), 1.25f), 6.0f) * 0.015f;
+            float size = Math.min(Math.max(1.2f * (NameTags.mc.player.getDistance(e) * 0.15f), 1.25f), 6.0f) * 0.015f * sizel.getValue();
             GL11.glTranslatef((float)((float)x), (float)((float)y + e.height + 0.6f), (float)((float)z));
             GlStateManager.glNormal3f((float)0.0f, (float)1.0f, (float)0.0f);
             GlStateManager.rotate((float)(-NameTags.mc.getRenderManager().playerViewY), (float)0.0f, (float)1.0f, (float)0.0f);
@@ -67,10 +71,13 @@ public class NameTags extends Module {
             GL11.glScalef((float)(-size), (float)(-size), (float)(-size));
             int health = (int)(((EntityPlayer)e).getHealth() / ((EntityPlayer)e).getMaxHealth() * 100.0f);
             if(background.getValue()) {
-                Gui.drawRect((int) (-NameTags.mc.fontRenderer.getStringWidth(e.getName() + " " + health + "%") / 2 - 2), (int) -2, (int) (NameTags.mc.fontRenderer.getStringWidth(e.getName()) / 2 + 16), (int) 10, backGroundColor.getColor().getRGB());}
-            if(outline.getValue()){RenderUtil.drawOutlineRect((int)(-NameTags.mc.fontRenderer.getStringWidth(e.getName() + " " + health + "%") / 2 - 2), (int)-2, (int)(NameTags.mc.fontRenderer.getStringWidth(e.getName()) / 2 + 16), (int)10, outlineColor.getColor(), outlineWidth.getValue());}
+                Gui.drawRect((int) (-NameTags.mc.fontRenderer.getStringWidth(e.getName() + " " + health + "%") / 2 - 2) - width.getValue(), (int) -2 - height.getValue(), (int) (NameTags.mc.fontRenderer.getStringWidth(e.getName()) / 2 + 16)  + width.getValue(), (int) 10 + height.getValue(), backGroundColor.getColor().getRGB());}
+            if(outline.getValue()){RenderUtil.drawOutlineRect((int)(-NameTags.mc.fontRenderer.getStringWidth(e.getName() + " " + health + "%") / 2 - 2) - width.getValue(), (int)-2 - height.getValue(), (int)(NameTags.mc.fontRenderer.getStringWidth(e.getName()) / 2 + 16) + width.getValue(), (int)10 + height.getValue(), outlineColor.getColor(), outlineWidth.getValue());}
             NameTags.mc.fontRenderer.drawString(e.getName() + " " + (Object) TextFormatting.GREEN + health + (heart.getValue() ? "\u2764" : "%"), 0 - this.getcenter(e.getName() + " " + (Object) TextFormatting.GREEN + health + "%"), 1, -1);
             int posX = -NameTags.mc.fontRenderer.getStringWidth(e.getName()) / 2 - 8;
+            if (healthBar.getValue()) {
+               RenderUtil.drawLine((-NameTags.mc.fontRenderer.getStringWidth(e.getName() + " " + health + "%") / 2 - 2) - width.getValue(), (int) 11 + height.getValue(), (int) (NameTags.mc.fontRenderer.getStringWidth(e.getName()) / 2 + 16)  + width.getValue() + ( -health), (int) 11 + height.getValue(), 3, new Color(0, 255,0).getRGB());
+            }
             if(items.getValue()) {
                 if (Item.getIdFromItem((Item) ((EntityPlayer) e).inventory.getCurrentItem().getItem()) != 0) {
                     NameTags.mc.getRenderItem().zLevel = -100.0f;

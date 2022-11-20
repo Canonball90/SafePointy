@@ -23,7 +23,6 @@ public class Chams extends Module {
 
     ColorSetting color = new ColorSetting("Color", new Color(255, 2, 2, 2), this);
     EnumSetting mode = new EnumSetting("Mode", "XYZ", Arrays.asList("Flat", "XYZ", "Texture", "Color"), this);
-    BooleanSetting rainbow = new BooleanSetting("RainBow", false, this);
     BooleanSetting lines = new BooleanSetting("Lines", true, this);
     IntegerSetting width = new IntegerSetting("Width", 40, 0, 100, this);
 
@@ -107,7 +106,7 @@ public class Chams extends Module {
     }
 
     private float getRolledHeight(float offset) {
-        double s = (System.currentTimeMillis()/pulseSpeed.getValue()) + (offset * rollingWidth.getValue() * 100.0f);
+        double s = (System.currentTimeMillis() * (double)pulseSpeed.getValue()) + (offset * rollingWidth.getValue() * 100.0f);
         s %= 300.0;
         s = (150.0f * Math.sin(((s - 75.0f) * Math.PI) / 150.0f)) + 150.0f;
         return pulseMax.getValue() + ((float)s * ((pulseMin.getValue() - pulseMax.getValue()) / 300.0f));
