@@ -5,7 +5,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import thefellas.safepoint.proxy.ServerProxy;
+import thefellas.safepoint.core.proxy.ServerProxy;
 
 
 @Mod(modid = SafepointMod.MOD_ID, name = SafepointMod.MOD_NAME, version = SafepointMod.VERSION)
@@ -14,8 +14,8 @@ public class SafepointMod {
     public static final String MOD_ID = "safepoint";
     public static final String MOD_NAME = "SafePoint";
     public static final String VERSION = "2.0";
-    public static final String CLIENT_PROXY = "thefellas.safepoint.proxy.ClientProxy";
-    public static final String SERVER_PROXY = "thefellas.safepoint.sproxy.ServerProxy";
+    public static final String CLIENT_PROXY = "thefellas.safepoint.core.proxy.ClientProxy";
+    public static final String SERVER_PROXY = "thefellas.safepoint.core.proxy.ServerProxy";
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
