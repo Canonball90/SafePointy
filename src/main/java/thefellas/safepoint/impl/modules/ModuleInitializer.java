@@ -31,15 +31,11 @@ public class ModuleInitializer {
     public void init(){
 
         //COMBAT
-        moduleList.add(new AA_AutoCrystal());
-        moduleList.add(new AB_Criticals());
         moduleList.add(new SelfBlock());
         moduleList.add(new AC_KillAura());
-        moduleList.add(new AD_Hitbox());
         moduleList.add(new AE_BowSpam());
         moduleList.add(new AF_Replenish());
         moduleList.add(new AG_Surround());
-        moduleList.add(new AutoArmor());
         moduleList.add(new AutoCrystal2b2t());
         moduleList.add(new AutoCrystalNew());
         moduleList.add(new AutoLog());
@@ -49,11 +45,9 @@ public class ModuleInitializer {
         moduleList.add(new BowAim());
         moduleList.add(new HoleFill());
         moduleList.add(new Offhand());
-        moduleList.add(new Quiver());
 
         //MOVEMENT
         moduleList.add(new AA_ElytraFly());
-        moduleList.add(new AB_Strafe());
         moduleList.add(new AC_Spider());
         moduleList.add(new AD_Sprint());
         moduleList.add(new AE_NoFall());
@@ -69,8 +63,6 @@ public class ModuleInitializer {
         moduleList.add(new OldfagNoFall());
         moduleList.add(new PacketFly());
         moduleList.add(new Parkour());
-        moduleList.add(new ReverseStep());
-        moduleList.add(new TunnelSpeed());
 
         //PLAYER
         moduleList.add(new AA_PacketEXP());
@@ -82,7 +74,6 @@ public class ModuleInitializer {
         moduleList.add(new MultiTask());
         moduleList.add(new Nuker());
         moduleList.add(new PacketEat());
-        moduleList.add(new PacketSwing());
         moduleList.add(new PearlAlert());
         moduleList.add(new DupeShulker5b5t());
 
@@ -92,31 +83,25 @@ public class ModuleInitializer {
         moduleList.add(new AD_FullBright());
         moduleList.add(new AE_EntityESP());
         moduleList.add(new AF_HoleESP());
-        moduleList.add(new AG_GlowESP());
         moduleList.add(new AH_ItemESP());
         moduleList.add(new AI_Trails());
         moduleList.add(new AK_BlockObject());
         moduleList.add(new AL_ThirdPerson());
-        moduleList.add(new AntiWeather());
         moduleList.add(new AssESP());
         moduleList.add(new Chams());
         moduleList.add(new Crosshair());
         moduleList.add(new ESP());
         moduleList.add(new NameTags());
-        moduleList.add(new NoBob());
         moduleList.add(new Ruler());
-        moduleList.add(new RuneScapeChat());
-        moduleList.add(new SignNametags());
-        moduleList.add(new SmallHand());
         moduleList.add(new ViewModel());
         moduleList.add(new WallHack());
+        moduleList.add(new NoRender());
 
         //MISC
         moduleList.add(new AA_AutoRespawn());
         moduleList.add(new AB_FakePlayer());
         moduleList.add(new AC_ChatSuffix());
         moduleList.add(new AD_AntiRegear());
-        moduleList.add(new Australia());
         moduleList.add(new AuthBypass());
         moduleList.add(new AutoExcuse());
         moduleList.add(new ChestSearchBar());
@@ -128,11 +113,9 @@ public class ModuleInitializer {
         moduleList.add(new AA_ChatNotifications());
         moduleList.add(new AB_HudEditor());
         moduleList.add(new AC_ClickGui());
-        moduleList.add(new AD_PARTS());
         moduleList.add(new AD_Stats());
         moduleList.add(new AntiLog4j());
         moduleList.add(new BetterFPS());
-        moduleList.add(new GUIBlur());
         moduleList.add(new MainMenu());
         moduleList.add(new MCF());
         moduleList.add(new Notification());

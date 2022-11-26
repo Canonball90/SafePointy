@@ -1,5 +1,10 @@
 package thefellas.safepoint.impl.modules.core;
 
+import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
 import thefellas.safepoint.Safepoint;
 import thefellas.safepoint.impl.modules.Module;
 import thefellas.safepoint.impl.modules.ModuleInfo;
@@ -23,6 +28,7 @@ public class AC_ClickGui extends Module {
     public BooleanSetting particles = new BooleanSetting("Particles", true, this, v -> background.getValue()).setParent(backParent);
     public IntegerSetting partLength = new IntegerSetting("Particle Length", 197, 90, 500, this, v -> background.getValue()).setParent(backParent);
     public BooleanSetting uwu = new BooleanSetting("Uwu", false, this, v -> background.getValue()).setParent(backParent);
+    public BooleanSetting blur = new BooleanSetting("Blur", false, this, v -> background.getValue()).setParent(backParent);
     public ColorSetting backgroundColor = new ColorSetting("Background Color", new Color(0, 0, 0, 50), this,  v -> background.getValue()).setParent(backParent);
     public ColorSetting backgroundColor2 = new ColorSetting("Background Color 2", new Color(255, 0, 0, 50), this,  v -> background.getValue()).setParent(backParent);
 
@@ -43,6 +49,9 @@ public class AC_ClickGui extends Module {
 
     @Override
     public void onDisable() {
+        if (AC_ClickGui.mc.world != null) {
+            AC_ClickGui.mc.entityRenderer.getShaderGroup().deleteShaderGroup();
+        }
         Safepoint.configInitializer.save();
     }
 
@@ -50,6 +59,31 @@ public class AC_ClickGui extends Module {
     public void onTick() {
         if (!(mc.currentScreen instanceof thefellas.safepoint.impl.ui.clickgui.ClickGui) && isEnabled())
             disableModule();
+    }
+
+    @SubscribeEvent
+    public void update(TickEvent.ClientTickEvent event) {
+        if (AC_ClickGui.mc.world != null || blur.getValue()) {
+            if (AC_ClickGui.mc.currentScreen == thefellas.safepoint.impl.ui.clickgui.ClickGui.getInstance()) {
+                if (OpenGlHelper.shadersSupported && AC_ClickGui.mc.getRenderViewEntity() instanceof EntityPlayer) {
+                    if (AC_ClickGui.mc.entityRenderer.getShaderGroup() != null) {
+                        AC_ClickGui.mc.entityRenderer.getShaderGroup().deleteShaderGroup();
+                    }
+                    try {
+                        AC_ClickGui.mc.entityRenderer.loadShader(new ResourceLocation("shaders/post/blur.json"));
+                    }
+                    catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+                else if (AC_ClickGui.mc.entityRenderer.getShaderGroup() != null && AC_ClickGui.mc.currentScreen == null) {
+                    AC_ClickGui.mc.entityRenderer.getShaderGroup().deleteShaderGroup();
+                }
+            }
+            else if (AC_ClickGui.mc.entityRenderer.getShaderGroup() != null) {
+                AC_ClickGui.mc.entityRenderer.getShaderGroup().deleteShaderGroup();
+            }
+        }
     }
 
     public static AC_ClickGui getInstance() {

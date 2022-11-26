@@ -1,5 +1,8 @@
 package thefellas.safepoint.core.utils;
 
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+
 import java.awt.Color;
 
 public class ColorUtil
@@ -36,5 +39,11 @@ public class ColorUtil
 
     public static int toRGBA(final Color color) {
         return toRGBA(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha());
+    }
+
+    public static int getHealthColor(final Entity entity) {
+        final int scale = (int) Math.round(255.0 - ((EntityLivingBase) entity).getHealth() * 255.0 / ((EntityLivingBase) entity).getMaxHealth());
+        final int damageColor = 255 - scale << 8 | scale << 16;
+        return 0xFF000000 | damageColor;
     }
 }

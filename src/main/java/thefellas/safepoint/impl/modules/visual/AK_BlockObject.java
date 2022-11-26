@@ -29,43 +29,7 @@ public class AK_BlockObject extends Module {
                     blockESP((Block));
                 }
             }
-        } catch (Exception ex) {
-            RayTraceResult objectMouseOverE = Minecraft.getMinecraft().objectMouseOver;
-            if (objectMouseOverE != null) {
-                entity = objectMouseOverE.entityHit;
-                box = new AxisAlignedBB(
-                        entity.getEntityBoundingBox().minX
-                                - 0.05
-                                - entity.posX
-                                + ((float) ((double) ((float) entity.lastTickPosX) + (entity.posX - entity.lastTickPosX) * Minecraft.getMinecraft().getRenderPartialTicks()) - Minecraft.getMinecraft()
-                                .getRenderManager().viewerPosX),
-                        entity.getEntityBoundingBox().minY
-                                - entity.posY
-                                + ((float) ((double) ((float) entity.lastTickPosY) + (entity.posY - entity.lastTickPosY) * Minecraft.getMinecraft().getRenderPartialTicks()) - Minecraft.getMinecraft()
-                                .getRenderManager().viewerPosY),
-                        entity.getEntityBoundingBox().minZ
-                                - 0.05
-                                - entity.posZ
-                                + ((float) ((double) ((float) entity.lastTickPosZ) + (entity.posZ - entity.lastTickPosZ) * Minecraft.getMinecraft().getRenderPartialTicks()) - Minecraft.getMinecraft()
-                                .getRenderManager().viewerPosZ),
-                        entity.getEntityBoundingBox().maxX
-                                + 0.05
-                                - entity.posX
-                                + ((float) ((double) ((float) entity.lastTickPosX) + (entity.posX - entity.lastTickPosX) * Minecraft.getMinecraft().getRenderPartialTicks()) - Minecraft.getMinecraft()
-                                .getRenderManager().viewerPosX),
-                        entity.getEntityBoundingBox().maxY
-                                + 0.1
-                                - entity.posY
-                                + ((float) ((double) ((float) entity.lastTickPosY) + (entity.posY - entity.lastTickPosY) * Minecraft.getMinecraft().getRenderPartialTicks()) - Minecraft.getMinecraft()
-                                .getRenderManager().viewerPosY),
-                        entity.getEntityBoundingBox().maxZ
-                                + 0.05
-                                - entity.posZ
-                                + ((float) ((double) ((float) entity.lastTickPosZ) + (entity.posZ - entity.lastTickPosZ) * Minecraft.getMinecraft().getRenderPartialTicks()) - Minecraft.getMinecraft()
-                                .getRenderManager().viewerPosZ));
-                FillLine(entity, box);
-            }
-        }
+        } catch (Exception ex) {return;}
     }
 
     public static void blockESP(BlockPos blockPos) {

@@ -6,6 +6,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import thefellas.safepoint.impl.modules.Module;
 import thefellas.safepoint.impl.modules.ModuleInfo;
+import thefellas.safepoint.impl.settings.impl.BooleanSetting;
 import thefellas.safepoint.impl.settings.impl.EnumSetting;
 import thefellas.safepoint.impl.settings.impl.FloatSetting;
 
@@ -16,10 +17,18 @@ public class AH_Step extends Module {
 
     FloatSetting height = new FloatSetting("Height", 2f, 1f, 5f, this);
     EnumSetting mode = new EnumSetting("Mode", "Vanilla", Arrays.asList("Vanilla", "NCP", "AAC"), this);
+    BooleanSetting reverse = new BooleanSetting("Reverse", true, this);
 
     @SubscribeEvent
     public void onUpdate(TickEvent.PlayerTickEvent e){
         if(nullCheck()) return;
+        if(reverse.getValue()){
+            if(mc.player.isDead || mc.player.collidedHorizontally || !mc.player.onGround || mc.player.isOnLadder() || mc.player.isInWater() || mc.player.isInLava() || mc.player.noClip) return;
+            if (mc.player.onGround)
+            {
+                mc.player.motionY -= 1.0;
+            }
+        }
         if (mode.getValue().equals("Vanilla")) {
             mc.player.stepHeight = height.getValue();
         } else if (mode.getValue().equals("Normal")) {
